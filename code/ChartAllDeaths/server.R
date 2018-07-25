@@ -6,8 +6,8 @@ library(tidyverse)
 library(plotly)
 library(shinycustomloader)
 
-df <- read_csv("2018-07-10_Deaths_Pop_CI.csv") %>%
-  distinct() %>%
+# Note use of absolute path for development only
+df <- read_csv("~/Documents/OneDrive/Professional/Projects/Drug Trends/Deaths/deathvisualisations/Data/Transformed/Deaths_Pop_CI.csv") %>%
   distinct() %>%
   mutate(
     age_group = ifelse(age_group == "Allages", "All ages", age_group),
@@ -52,6 +52,18 @@ drugcols <- c("All opioids" = "#332288",
               "Cocaine" = "#DDCC77",
               "Amphetamines" = "#AA4499")
 
+drugltype <- c(
+  "All opioids with alcohol"=1,
+  "All opioids with antidepressants"=2,
+  "All opioids with antipsychotics"=3,
+  "All opioids with benzodiazepines"=4,
+  "All opioids with paracetamol"=5,
+  
+  "Exclusive illicit opioids"=1,
+  "Exclusive pharmaceutical opioids"=2,
+  "Heroin/Opium with pharmaceutical opioids"=3,
+  "Unspecified opioids"=4)
+
 codtype <- c(
   "All" = 1,
   "Accidental" = 2,
@@ -63,6 +75,12 @@ sextype <- c(
   "All" = 1,
   "Male" = 2,
   "Female" = 3
+)
+
+sexcols <- c(
+  "All" = "#808080",
+  "Male" = "#5B7EBB",
+  "Female" = "#B3564D"
 )
 
 # Allow for site's state to be bookmarked via the url
@@ -921,5 +939,338 @@ server <- function(input, output, session) {
       config(displaylogo=F, collaborate = FALSE, modeBarButtonsToRemove = list("sendDataToCloud","zoom2d","pan2d","select2d","lasso2d",
                                                                                "zoomIn2d","zoomOut2d","autoScale2d","hoverClosestCartesian",
                                                                                "hoverCompareCartesian", "resetScale2d", "toggleSpikelines"))
+  })
+  
+  # Opioids with other drugs  -----------------------------------------------------------------
+  output$PlotOE <- renderPlotly({
+    sub <- filter(df, word(drug, start = 1, end = 3) == "All opioids with" & jurisdiction == "AUS" &
+                    drug %in% input$drugOE & intent %in% input$intentOE & age_group %in% input$ageOE & 
+                    (year >= input$yearsOE[[1]] & year <= input$yearsOE[[2]]) & sex==input$sexOE)
+    
+    
+    if (input$plotOE == "deaths") {
+      p <- ggplot(sub) + aes(x = year, y = n, colour = age_group, linetype = drug, group = 1,
+                             text = paste0(
+                               "Year: ", year,
+                               "<br>Deaths: ", n,
+                               "<br>Drug: ", str_to_title(drug),
+                               "<br>Intent: ", str_to_title(intent),
+                               "<br>Age group: ", age_group
+                             )) + geom_line() +
+        scale_y_continuous(limits = c(0, NA)) +
+        labs(x = "Year", y = "Number of deaths", color = "Age") +
+        theme_light() + scale_colour_manual(values = agecols) + scale_linetype_manual(values = drugltype) +
+        theme(legend.title = element_blank())
+    }
+    
+    if (input$plotOE == "deathrateht") {
+      p <- ggplot(sub) + aes(x = year, y = rate_ht, colour = age_group, linetype = drug, group = 1,
+                             text = paste0(
+                               "Year: ", year,
+                               "<br>Deaths: ", n,
+                               "<br>Rate: ", round(rate_ht, 2),
+                               "<br>Drug: ", str_to_title(drug),
+                               "<br>Intent: ", str_to_title(intent),
+                               "<br>Age group: ", age_group
+                             )) + geom_line() +
+        scale_y_continuous(limits = c(0, NA)) +
+        labs(x = "Year", y = "Deaths per 100,000", color = "Age") +
+        theme_light() + scale_colour_manual(values = agecols) +scale_linetype_manual(values = drugltype) +
+        theme(legend.title = element_blank())
+    }
+    
+    if (input$plotOE == "deathratehtci") {
+      p <- ggplot(sub) + aes(x = year, y = rate_ht, colour = age_group, linetype = drug, group = 1,
+                             text = paste0(
+                               "Year: ", year,
+                               "<br>Deaths: ", n,
+                               "<br>Rate: ", round(rate_ht, 2), " (", round(rate_ht_lcl, 2), ", ", round(rate_ht_ucl, 2), ")",
+                               "<br>Drug: ", str_to_title(drug),
+                               "<br>Intent: ", str_to_title(intent),
+                               "<br>Age group: ", age_group
+                             )) + geom_line() +
+        geom_ribbon(aes(ymin = rate_ht_lcl, ymax = rate_ht_ucl), alpha = 0.1, size = 0) +
+        scale_y_continuous(limits = c(0, NA)) +
+        labs(x = "Year", y = "Deaths per 100,000", color = "Age") +
+        theme_light() + scale_colour_manual(values = agecols) +scale_linetype_manual(values = drugltype) +
+        theme(legend.title = element_blank())
+    }
+    
+    if (input$plotOE == "deathratem") {
+      p <- ggplot(sub) + aes(x = year, y = rate_m, colour = age_group, linetype = drug, group = 1,
+                             text = paste0(
+                               "Year: ", year,
+                               "<br>Deaths: ", n,
+                               "<br>Rate: ", round(rate_m, 2),
+                               "<br>Drug: ", str_to_title(drug),
+                               "<br>Intent: ", str_to_title(intent),
+                               "<br>Age group: ", age_group
+                             )) + geom_line() +
+        scale_y_continuous(limits = c(0, NA)) +
+        labs(x = "Year", y = "Deaths per 1,000,000", color = "Age") +
+        theme_light() + scale_colour_manual(values = agecols) +scale_linetype_manual(values = drugltype) +
+        theme(legend.title = element_blank())
+    }
+    
+    if (input$plotOE == "deathratemci") {
+      p <- ggplot(sub) + aes(x = year, y = rate_m, colour = age_group, linetype = drug, group = 1,
+                             text = paste0(
+                               "Year: ", year,
+                               "<br>Deaths: ", n,
+                               "<br>Rate: ", round(rate_m, 2), " (", round(rate_m_lcl, 2), ", ", round(rate_m_ucl, 2), ")",
+                               "<br>Drug: ", str_to_title(drug),
+                               "<br>Intent: ", str_to_title(intent),
+                               "<br>Age group: ", age_group
+                             )) + geom_line() +
+        geom_ribbon(aes(ymin = rate_m_lcl, ymax = rate_m_ucl), alpha = 0.1, size = 0) +
+        scale_y_continuous(limits = c(0, NA)) +
+        labs(x = "Year", y = "Deaths per 1,000,000", color = "Age") +
+        theme_light() + scale_colour_manual(values = agecols) +scale_linetype_manual(values = drugltype) +
+        theme(legend.title = element_blank())
+    }
+    
+    validate(need(nrow(sub) > 0, "No data selected"))
+    
+    ggplotly(p, tooltip = "text") %>%
+      add_annotations(
+        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/program/drug-trends">DrugTrends</a>, NDARC',
+        xref = "paper", yref = "paper",
+        x = 0.01, xanchor = "left",
+        y = 0.995, yanchor = "top",
+        showarrow = F, font = list(size = 10, color = "grey")
+      ) %>%
+      add_annotations(
+        text = "Age and drug", xref = "paper", yref = "paper",
+        x = 1.02, xanchor = "left",
+        y = 0.95, yanchor = "bottom", # Same y as legend below
+        legendtitle = TRUE, showarrow = FALSE
+      ) %>%
+      layout(legend = list(y = 0.95, yanchor = "top"), margin = list(b = 100, l = 100)) %>%
+      config(displaylogo=F, collaborate = FALSE, modeBarButtonsToRemove = list("sendDataToCloud","zoom2d","pan2d","select2d","lasso2d",
+                                                                               "zoomIn2d","zoomOut2d","autoScale2d","hoverClosestCartesian",
+                                                                               "hoverCompareCartesian", "resetScale2d", "toggleSpikelines"))
+    
+  })
+  
+  # Opioids and other drugs by sex ------------------------------------------
+  output$PlotOF <- renderPlotly({
+    sub <- filter(df, word(drug, start = 1, end = 3) == "All opioids with" & jurisdiction == "AUS" &
+                    drug %in% input$drugOF & intent == input$intentOF & age_group == input$ageOF & 
+                    (year >= input$yearsOF[[1]] & year <= input$yearsOF[[2]]) & sex %in% input$sexOF)
+    
+    
+    if (input$plotOF == "deaths") {
+      p <- ggplot(sub) + aes(x = year, y = n, colour = sex, linetype = drug, group = 1,
+                             text = paste0(
+                               "Year: ", year,
+                               "<br>Deaths: ", n,
+                               "<br>Drug: ", str_to_title(drug),
+                               "<br>Intent: ", str_to_title(intent),
+                               "<br>Sex: ", sex
+                             )) + geom_line() +
+        scale_y_continuous(limits = c(0, NA)) +
+        labs(x = "Year", y = "Number of deaths", color = "Sex") +
+        theme_light() + scale_colour_manual(values = sexcols) +scale_linetype_manual(values = drugltype) +
+        theme(legend.title = element_blank())
+    }
+    
+    if (input$plotOF == "deathrateht") {
+      p <- ggplot(sub) + aes(x = year, y = rate_ht, colour = sex, linetype = drug, group = 1,
+                             text = paste0(
+                               "Year: ", year,
+                               "<br>Deaths: ", n,
+                               "<br>Rate: ", round(rate_ht, 2),
+                               "<br>Drug: ", str_to_title(drug),
+                               "<br>Intent: ", str_to_title(intent),
+                               "<br>Sex: ", sex
+                             )) + geom_line() +
+        scale_y_continuous(limits = c(0, NA)) +
+        labs(x = "Year", y = "Deaths per 100,000", color = "Sex") +
+        theme_light() + scale_colour_manual(values = sexcols) +scale_linetype_manual(values = drugltype) +
+        theme(legend.title = element_blank())
+    }
+    
+    if (input$plotOF == "deathratehtci") {
+      p <- ggplot(sub) + aes(x = year, y = rate_ht, colour = sex, linetype = drug, group = 1,
+                             text = paste0(
+                               "Year: ", year,
+                               "<br>Deaths: ", n,
+                               "<br>Rate: ", round(rate_ht, 2), " (", round(rate_ht_lcl, 2), ", ", round(rate_ht_ucl, 2), ")",
+                               "<br>Drug: ", str_to_title(drug),
+                               "<br>Intent: ", str_to_title(intent),
+                               "<br>Sex: ", sex
+                             )) + geom_line() +
+        geom_ribbon(aes(ymin = rate_ht_lcl, ymax = rate_ht_ucl), alpha = 0.1, size = 0) +
+        scale_y_continuous(limits = c(0, NA)) +
+        labs(x = "Year", y = "Deaths per 100,000", color = "Sex") +
+        theme_light() + scale_colour_manual(values = sexcols) +scale_linetype_manual(values = drugltype) +
+        theme(legend.title = element_blank())
+    }
+    
+    if (input$plotOF == "deathratem") {
+      p <- ggplot(sub) + aes(x = year, y = rate_m, colour = sex, linetype = drug, group = 1,
+                             text = paste0(
+                               "Year: ", year,
+                               "<br>Deaths: ", n,
+                               "<br>Rate: ", round(rate_m, 2),
+                               "<br>Drug: ", str_to_title(drug),
+                               "<br>Intent: ", str_to_title(intent),
+                               "<br>Sex: ", sex
+                             )) + geom_line() +
+        scale_y_continuous(limits = c(0, NA)) +
+        labs(x = "Year", y = "Deaths per 1,000,000", color = "Sex") +
+        theme_light() + scale_colour_manual(values = sexcols) +scale_linetype_manual(values = drugltype) +
+        theme(legend.title = element_blank())
+    }
+    
+    if (input$plotOF == "deathratemci") {
+      p <- ggplot(sub) + aes(x = year, y = rate_m, colour = sex, linetype = drug, group = 1,
+                             text = paste0(
+                               "Year: ", year,
+                               "<br>Deaths: ", n,
+                               "<br>Rate: ", round(rate_m, 2), " (", round(rate_m_lcl, 2), ", ", round(rate_m_ucl, 2), ")",
+                               "<br>Drug: ", str_to_title(drug),
+                               "<br>Intent: ", str_to_title(intent),
+                               "<br>Sex: ", sex
+                             )) + geom_line() +
+        geom_ribbon(aes(ymin = rate_m_lcl, ymax = rate_m_ucl), alpha = 0.1, size = 0) +
+        scale_y_continuous(limits = c(0, NA)) +
+        labs(x = "Year", y = "Deaths per 1,000,000", color = "Sex") +
+        theme_light() + scale_colour_manual(values = sexcols) +scale_linetype_manual(values = drugltype) +
+        theme(legend.title = element_blank())
+    }
+    
+    validate(need(nrow(sub) > 0, "No data selected"))
+    
+    ggplotly(p, tooltip = "text") %>%
+      add_annotations(
+        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/program/drug-trends">DrugTrends</a>, NDARC',
+        xref = "paper", yref = "paper",
+        x = 0.01, xanchor = "left",
+        y = 0.995, yanchor = "top",
+        showarrow = F, font = list(size = 10, color = "grey")
+      ) %>%
+      add_annotations(
+        text = "Sex and drug", xref = "paper", yref = "paper",
+        x = 1.02, xanchor = "left",
+        y = 0.95, yanchor = "bottom", # Same y as legend below
+        legendtitle = TRUE, showarrow = FALSE
+      ) %>%
+      layout(legend = list(y = 0.95, yanchor = "top"), margin = list(b = 100, l = 100)) %>%
+      config(displaylogo=F, collaborate = FALSE, modeBarButtonsToRemove = list("sendDataToCloud","zoom2d","pan2d","select2d","lasso2d",
+                                                                               "zoomIn2d","zoomOut2d","autoScale2d","hoverClosestCartesian",
+                                                                               "hoverCompareCartesian", "resetScale2d", "toggleSpikelines"))
+    
+  })
+  
+  # Exclusive opioids ------------------------------------------
+  output$PlotOG <- renderPlotly({
+    sub <- filter(df, jurisdiction == "AUS" &
+                    drug %in% input$drugOG & intent == input$intentOG & age_group == input$ageOG & 
+                    (year >= input$yearsOG[[1]] & year <= input$yearsOG[[2]]) & sex %in% input$sexOG)
+    
+    
+    if (input$plotOG == "deaths") {
+      p <- ggplot(sub) + aes(x = year, y = n, colour = sex, linetype = drug, group = 1,
+                             text = paste0(
+                               "Year: ", year,
+                               "<br>Deaths: ", n,
+                               "<br>Drug: ", str_to_title(drug),
+                               "<br>Intent: ", str_to_title(intent),
+                               "<br>Sex: ", sex
+                             )) + geom_line() +
+        scale_y_continuous(limits = c(0, NA)) +
+        labs(x = "Year", y = "Number of deaths", color = "Sex") +
+        theme_light() + scale_colour_manual(values = sexcols) +scale_linetype_manual(values = drugltype) +
+        theme(legend.title = element_blank())
+    }
+    
+    if (input$plotOG == "deathrateht") {
+      p <- ggplot(sub) + aes(x = year, y = rate_ht, colour = sex, linetype = drug, group = 1,
+                             text = paste0(
+                               "Year: ", year,
+                               "<br>Deaths: ", n,
+                               "<br>Rate: ", round(rate_ht, 2),
+                               "<br>Drug: ", str_to_title(drug),
+                               "<br>Intent: ", str_to_title(intent),
+                               "<br>Sex: ", sex
+                             )) + geom_line() +
+        scale_y_continuous(limits = c(0, NA)) +
+        labs(x = "Year", y = "Deaths per 100,000", color = "Sex") +
+        theme_light() + scale_colour_manual(values = sexcols) +scale_linetype_manual(values = drugltype) +
+        theme(legend.title = element_blank())
+    }
+    
+    if (input$plotOG == "deathratehtci") {
+      p <- ggplot(sub) + aes(x = year, y = rate_ht, colour = sex, linetype = drug, group = 1,
+                             text = paste0(
+                               "Year: ", year,
+                               "<br>Deaths: ", n,
+                               "<br>Rate: ", round(rate_ht, 2), " (", round(rate_ht_lcl, 2), ", ", round(rate_ht_ucl, 2), ")",
+                               "<br>Drug: ", str_to_title(drug),
+                               "<br>Intent: ", str_to_title(intent),
+                               "<br>Sex: ", sex
+                             )) + geom_line() +
+        geom_ribbon(aes(ymin = rate_ht_lcl, ymax = rate_ht_ucl), alpha = 0.1, size = 0) +
+        scale_y_continuous(limits = c(0, NA)) +
+        labs(x = "Year", y = "Deaths per 100,000", color = "Sex") +
+        theme_light() + scale_colour_manual(values = sexcols) +scale_linetype_manual(values = drugltype) +
+        theme(legend.title = element_blank())
+    }
+    
+    if (input$plotOG == "deathratem") {
+      p <- ggplot(sub) + aes(x = year, y = rate_m, colour = sex, linetype = drug, group = 1,
+                             text = paste0(
+                               "Year: ", year,
+                               "<br>Deaths: ", n,
+                               "<br>Rate: ", round(rate_m, 2),
+                               "<br>Drug: ", str_to_title(drug),
+                               "<br>Intent: ", str_to_title(intent),
+                               "<br>Sex: ", sex
+                             )) + geom_line() +
+        scale_y_continuous(limits = c(0, NA)) +
+        labs(x = "Year", y = "Deaths per 1,000,000", color = "Sex") +
+        theme_light() + scale_colour_manual(values = sexcols) +scale_linetype_manual(values = drugltype) +
+        theme(legend.title = element_blank())
+    }
+    
+    if (input$plotOG == "deathratemci") {
+      p <- ggplot(sub) + aes(x = year, y = rate_m, colour = sex, linetype = drug, group = 1,
+                             text = paste0(
+                               "Year: ", year,
+                               "<br>Deaths: ", n,
+                               "<br>Rate: ", round(rate_m, 2), " (", round(rate_m_lcl, 2), ", ", round(rate_m_ucl, 2), ")",
+                               "<br>Drug: ", str_to_title(drug),
+                               "<br>Intent: ", str_to_title(intent),
+                               "<br>Sex: ", sex
+                             )) + geom_line() +
+        geom_ribbon(aes(ymin = rate_m_lcl, ymax = rate_m_ucl), alpha = 0.1, size = 0) +
+        scale_y_continuous(limits = c(0, NA)) +
+        labs(x = "Year", y = "Deaths per 1,000,000", color = "Sex") +
+        theme_light() + scale_colour_manual(values = sexcols) +scale_linetype_manual(values = drugltype) +
+        theme(legend.title = element_blank())
+    }
+    
+    validate(need(nrow(sub) > 0, "No data selected"))
+    
+    ggplotly(p, tooltip = "text") %>%
+      add_annotations(
+        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/program/drug-trends">DrugTrends</a>, NDARC',
+        xref = "paper", yref = "paper",
+        x = 0.01, xanchor = "left",
+        y = 0.995, yanchor = "top",
+        showarrow = F, font = list(size = 10, color = "grey")
+      ) %>%
+      add_annotations(
+        text = "Sex and drug", xref = "paper", yref = "paper",
+        x = 1.02, xanchor = "left",
+        y = 0.95, yanchor = "bottom", # Same y as legend below
+        legendtitle = TRUE, showarrow = FALSE
+      ) %>%
+      layout(legend = list(y = 0.95, yanchor = "top"), margin = list(b = 100, l = 100)) %>%
+      config(displaylogo=F, collaborate = FALSE, modeBarButtonsToRemove = list("sendDataToCloud","zoom2d","pan2d","select2d","lasso2d",
+                                                                               "zoomIn2d","zoomOut2d","autoScale2d","hoverClosestCartesian",
+                                                                               "hoverCompareCartesian", "resetScale2d", "toggleSpikelines"))
+    
   })
 }

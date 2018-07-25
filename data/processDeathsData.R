@@ -91,11 +91,11 @@ deaths_td <- bind_rows(sheet1, sheet2, sheet3, sheet4, sheet5, sheet6, sheet7, s
          age = ifelse(age=="all", "Allages", age),
          nature = ifelse(nature=="On board", "Any mention", nature),
          intent = case_when (
-           intent=="Accidental" ~ "Accidental",
            intent=="Accidental, Intentional self-poisoning & Undetermined" ~ "All",
            intent=="Accidental, Intentional self-poisoning & Undetermined intent" ~ "All",
            intent=="Intentional self-poisoning" ~ "Intentional",
-           intent=="Undetermined intent" ~ "Undetermined"
+           intent=="Undetermined intent" ~ "Undetermined",
+           TRUE ~ intent
          )) %>%
          rename(age_group=age) %>% 
   select(-cause_of_death)
