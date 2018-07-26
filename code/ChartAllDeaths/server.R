@@ -106,6 +106,15 @@ server <- function(input, output, session) {
     if(query1 == "tab=PlotOD"){
       updateTabsetPanel(session, inputId = "Plot", selected = "PlotOD")
     }
+    if(query1 == "tab=PlotOE"){
+      updateTabsetPanel(session, inputId = "Plot", selected = "PlotOE")
+    }
+    if(query1 == "tab=PlotOF"){
+      updateTabsetPanel(session, inputId = "Plot", selected = "PlotOF")
+    }
+    if(query1 == "tab=PlotOG"){
+      updateTabsetPanel(session, inputId = "Plot", selected = "PlotOG")
+    }
     if(query1 == "tab=PlotA"){
       updateTabsetPanel(session, inputId = "Plot", selected = "PlotA")
     }
