@@ -16,17 +16,17 @@ ui <- function(req){
     "Opioids",
 
     tabPanel(value="PlotOA", 
-      # Opioids by intent, type and age -----------------------------------------
-      "By opioid type, intent and age",
-      h1("Opioid induced deaths over time"),
-      h3("By opioid type, intent and age"),
+      # Opioids by intent, opioid and age -----------------------------------------
+      "By opioid, intent and age",
+      h1("Opioid induced deaths"),
+      h3("By opioid, intent and age"),
       
       tabsetPanel(
         type = "tabs",
         tabPanel("Plot",
           mainPanel(
             withLoader(plotlyOutput("opioidPlotA"), type = "html", loader = "loader4"),
-            fluidRow(includeMarkdown("notes.md"))
+            fluidRow(includeMarkdown("notesOpioids.md"))
           ),
 
           sidebarPanel(
@@ -38,21 +38,22 @@ ui <- function(req){
               "plotOA", "Plot:",
               c(
                 "Number of deaths" = "deaths",
-                "Deaths per 100,000" = "deathrateht",
-                "Deaths per 100,000 with CI" = "deathratehtci",
-                "Deaths per 1,000,000" = "deathratem",
-                "Deaths per 1,000,000 with CI" = "deathratemci"
-              )
+                "Deaths per 100,000 people" = "deathrateht",
+                "Deaths per 100,000 people (95% CI)" = "deathratehtci",
+                "Deaths per 1,000,000 people" = "deathratem",
+                "Deaths per 1,000,000 people (95% CI)" = "deathratemci"
+              ),
+              selected="deathrateht"
             ),
 
-            selectInput("drugOA", "Opioid type:",
+            selectInput("drugOA", "Opioid:",
               choices = c(
                 "All opioids",
                 "Heroin",
                 "Methadone",
-                "Other opioids",
-                "Other and unspecified narcotics",
-                "Other synthetic narcotics"
+                "Natural and semi-synthetic opioids",
+                "Synthetic opioids",
+                "Other and unspecified opioids"
               ),
               selected = c("All opioids")
             ),
@@ -84,10 +85,10 @@ ui <- function(req){
       )
     ),
     tabPanel(value="PlotOB", 
-      # Opioids by intent, type and sex -----------------------------------------
-      "By intent, opioid type and sex",
-      h1("Opioid induced deaths over time"),
-      h3("By intent, opioid type and sex"),
+      # Opioids by intent, opioid and sex -----------------------------------------
+      "By intent, opioid and sex",
+      h1("Opioid induced deaths"),
+      h3("By intent, opioid and sex"),
 
       tabsetPanel(
         type = "tabs",
@@ -97,7 +98,7 @@ ui <- function(req){
 
           mainPanel(
             withLoader(plotlyOutput("opioidPlotB"), type = "html", loader = "loader4"),
-            fluidRow(includeMarkdown("notes.md"))
+            fluidRow(includeMarkdown("notesOpioids.md"))
           ),
 
 
@@ -110,10 +111,10 @@ ui <- function(req){
               "plotOB", "Plot:",
               c(
                 "Number of deaths" = "deaths",
-                "Deaths per 100,000" = "deathrateht",
-                "Deaths per 100,000 with CI" = "deathratehtci",
-                "Deaths per 1,000,000" = "deathratem",
-                "Deaths per 1,000,000 with CI" = "deathratemci"
+                "Deaths per 100,000 people" = "deathrateht",
+                "Deaths per 100,000 people (95% CI)" = "deathratehtci",
+                "Deaths per 1,000,000 people" = "deathratem",
+                "Deaths per 1,000,000 people (95% CI)" = "deathratemci"
               )
             ),
 
@@ -127,14 +128,14 @@ ui <- function(req){
               c("All", "Accidental", "Intentional", "Undetermined")
             ),
 
-            checkboxGroupInput("drugOB", "Opioid type:",
+            checkboxGroupInput("drugOB", "Opioid:",
               choices = c(
                 "All opioids",
                 "Heroin",
                 "Methadone",
-                "Other opioids",
-                "Other and unspecified narcotics",
-                "Other synthetic narcotics"
+                "Natural and semi-synthetic opioids",
+                "Synthetic opioids",
+                "Other and unspecified opioids"
               ),
               selected = c("All opioids")
             ),
@@ -150,10 +151,10 @@ ui <- function(req){
     ),
 
     tabPanel(value="PlotOC", 
-      # Opioids by sex, intent and type -----------------------------------------
-      "By sex, intent and opioid type",
-      h1("Opioid induced deaths over time"),
-      h3("By sex, intent and opioid type"),
+      # Opioids by sex, intent and opioid -----------------------------------------
+      "By sex, intent and opioid",
+      h1("Opioid induced deaths"),
+      h3("By sex, intent and opioid"),
 
       tabsetPanel(
         type = "tabs",
@@ -162,7 +163,7 @@ ui <- function(req){
 
           mainPanel(
             withLoader(plotlyOutput("opioidPlotC"), type = "html", loader = "loader4"),
-            fluidRow(includeMarkdown("notes.md"))
+            fluidRow(includeMarkdown("notesOpioids.md"))
           ),
 
           sidebarPanel(
@@ -174,10 +175,10 @@ ui <- function(req){
               "plotOC", "Plot:",
               c(
                 "Number of deaths" = "deaths",
-                "Deaths per 100,000" = "deathrateht",
-                "Deaths per 100,000 with CI" = "deathratehtci",
-                "Deaths per 1,000,000" = "deathratem",
-                "Deaths per 1,000,000 with CI" = "deathratemci"
+                "Deaths per 100,000 people" = "deathrateht",
+                "Deaths per 100,000 people (95% CI)" = "deathratehtci",
+                "Deaths per 1,000,000 people" = "deathratem",
+                "Deaths per 1,000,000 people (95% CI)" = "deathratemci"
               )
             ),
 
@@ -198,14 +199,14 @@ ui <- function(req){
               selected = c("All")
             ),
 
-            checkboxGroupInput("drugOC", "Opioid type:",
+            checkboxGroupInput("drugOC", "Opioid:",
               choices = c(
                 "All opioids",
                 "Heroin",
                 "Methadone",
-                "Other opioids",
-                "Other and unspecified narcotics",
-                "Other synthetic narcotics"
+                "Natural and semi-synthetic opioids",
+                "Synthetic opioids",
+                "Other and unspecified opioids"
               ),
               selected = c("All opioids")
             )
@@ -221,7 +222,7 @@ ui <- function(req){
       # Opioids by intent, jurisdiction and sex ---------------------------------
       "By intent, jurisdiction and sex",
 
-      h1("Opioid induced deaths over time"),
+      h1("Opioid induced deaths"),
       h3("By intent, jurisdiction and sex"),
 
       tabsetPanel(
@@ -229,7 +230,8 @@ ui <- function(req){
         tabPanel(
           "Plot",
           mainPanel(
-            withLoader(plotlyOutput("opioidPlotD"), type = "html", loader = "loader4")
+            withLoader(plotlyOutput("opioidPlotD"), type = "html", loader = "loader4"),
+            fluidRow(includeMarkdown("notesOpioids.md"))
           ),
 
           sidebarPanel(
@@ -241,10 +243,10 @@ ui <- function(req){
               "plotOD", "Plot:",
               c(
                 "Number of deaths" = "deaths",
-                "Deaths per 100,000" = "deathrateht",
-                "Deaths per 100,000 with CI" = "deathratehtci",
-                "Deaths per 1,000,000" = "deathratem",
-                "Deaths per 1,000,000 with CI" = "deathratemci"
+                "Deaths per 100,000 people" = "deathrateht",
+                "Deaths per 100,000 people (95% CI)" = "deathratehtci",
+                "Deaths per 1,000,000 people" = "deathratem",
+                "Deaths per 1,000,000 people (95% CI)" = "deathratemci"
               )
             ),
 
@@ -286,7 +288,7 @@ ui <- function(req){
     tabPanel(value="PlotOE", 
              # Opioids with other drugs by age -----------------------------------------
              "Opioids with other drugs, by age",
-             h1("Opioid induced deaths over time"),
+             h1("Opioid induced deaths"),
              h3("Opioids with other drugs"),
 
              tabsetPanel(
@@ -305,10 +307,10 @@ ui <- function(req){
                      "plotOE", "Plot:",
                      c(
                        "Number of deaths" = "deaths",
-                       "Deaths per 100,000" = "deathrateht",
-                       "Deaths per 100,000 with CI" = "deathratehtci",
-                       "Deaths per 1,000,000" = "deathratem",
-                       "Deaths per 1,000,000 with CI" = "deathratemci"
+                       "Deaths per 100,000 people" = "deathrateht",
+                       "Deaths per 100,000 people (95% CI)" = "deathratehtci",
+                       "Deaths per 1,000,000 people" = "deathratem",
+                       "Deaths per 1,000,000 people (95% CI)" = "deathratemci"
                      )
                    ),
                    
@@ -357,18 +359,13 @@ ui <- function(req){
                  )
                ),
                tabPanel("Notes", "Notes go here")
-             )             
-             # tabsetPanel(
-             #   type = "tabs",
-             #   tabPanel("Plot"),
-             #   tabPanel("Notes")
-             #   )
+             )
   ),
 
   tabPanel(value="PlotOF", 
            # Opioids with other drugs by sex -----------------------------------------
            "Opioids with other drugs, by sex",
-           h1("Opioid induced deaths over time"),
+           h1("Opioid induced deaths"),
            h3("Opioids with other drugs"),
 
            # Opioids and other drugs by sex ------------------------------------------
@@ -390,10 +387,10 @@ ui <- function(req){
                      "plotOF", "Plot:",
                      c(
                        "Number of deaths" = "deaths",
-                       "Deaths per 100,000" = "deathrateht",
-                       "Deaths per 100,000 with CI" = "deathratehtci",
-                       "Deaths per 1,000,000" = "deathratem",
-                       "Deaths per 1,000,000 with CI" = "deathratemci"
+                       "Deaths per 100,000 people" = "deathrateht",
+                       "Deaths per 100,000 people (95% CI)" = "deathratehtci",
+                       "Deaths per 1,000,000 people" = "deathratem",
+                       "Deaths per 1,000,000 people (95% CI)" = "deathratemci"
                      )
                    ),
                    
@@ -439,7 +436,7 @@ ui <- function(req){
   tabPanel(value="PlotOG", 
            # Exclusive opioids -----------------------------------------
            "Exclusive opioids",
-           h1("Opioid induced deaths over time"),
+           h1("Opioid induced deaths"),
            h3("Exclusive opioids"),
            
            tabsetPanel(
@@ -458,10 +455,10 @@ ui <- function(req){
                           "plotOG", "Plot:",
                           c(
                             "Number of deaths" = "deaths",
-                            "Deaths per 100,000" = "deathrateht",
-                            "Deaths per 100,000 with CI" = "deathratehtci",
-                            "Deaths per 1,000,000" = "deathratem",
-                            "Deaths per 1,000,000 with CI" = "deathratemci"
+                            "Deaths per 100,000 people" = "deathrateht",
+                            "Deaths per 100,000 people (95% CI)" = "deathratehtci",
+                            "Deaths per 1,000,000 people" = "deathratem",
+                            "Deaths per 1,000,000 people (95% CI)" = "deathratemci"
                           )
                         ),
                         
@@ -508,14 +505,15 @@ ui <- function(req){
     # Amphetamines tab --------------------------------------------------------
   tabPanel(value="PlotA", 
     "Amphetamines",
-    h1("Amphetamine induced deaths over time"),
+    h1("Drug induced deaths involving amphetamines"),
 
     tabsetPanel(
       type = "tabs",
       tabPanel(
         "Plot",
         mainPanel(
-      withLoader(plotlyOutput("amphetaminePlot"), type = "html", loader = "loader4")
+      withLoader(plotlyOutput("amphetaminePlot"), type = "html", loader = "loader4"),
+      fluidRow(includeMarkdown("notesNoSexSummary.md"))
     ),
 
     sidebarPanel(
@@ -527,23 +525,34 @@ ui <- function(req){
         "plotA", "Plot:",
         c(
           "Number of deaths" = "deaths",
-          "Deaths per 100,000" = "deathrateht",
-          "Deaths per 100,000 with CI" = "deathratehtci",
-          "Deaths per 1,000,000" = "deathratem",
-          "Deaths per 1,000,000 with CI" = "deathratemci"
+          "Deaths per 100,000 people" = "deathrateht",
+          "Deaths per 100,000 people (95% CI)" = "deathratehtci",
+          "Deaths per 1,000,000 people" = "deathratem",
+          "Deaths per 1,000,000 people (95% CI)" = "deathratemci"
         )
       ),
 
-      selectInput(
+      radioButtons(
         "codA", "Intent:",
-        c("All", "Accidental")
+        c("All", "Accidental"),
+        selected="All"
       ),
 
       conditionalPanel(
         condition = "input.codA == 'Accidental'",
-        selectInput(
+        radioButtons(
           "natureA", "Nature of death:",
-          c("Any mention", "Underlying")
+          c("Any mention", "Underlying"),
+          selected="Any mention"
+        )
+      ),
+
+      conditionalPanel(
+        condition = "input.codA == 'All'",
+        radioButtons(
+          "natureA", "Nature of death:",
+          c("Any mention"),
+          selected="Any mention"
         )
       ),
 
@@ -572,14 +581,15 @@ ui <- function(req){
   # Cocaine tab -------------------------------------------------------------
   tabPanel(value="PlotC", 
     "Cocaine",
-    h1("Cocaine induced deaths over time"),
+    h1("Drug induced deaths involving cocaine"),
 
     tabsetPanel(
       type = "tabs",
       tabPanel(
         "Plot",
         mainPanel(
-      withLoader(plotlyOutput("cocainePlot"), type = "html", loader = "loader4")
+      withLoader(plotlyOutput("cocainePlot"), type = "html", loader = "loader4"),
+      fluidRow(includeMarkdown("notesNoSexSummary.md"))
     ),
 
     sidebarPanel(
@@ -591,29 +601,40 @@ ui <- function(req){
         "plotC", "Plot:",
         c(
           "Number of deaths" = "deaths",
-          "Deaths per 100,000" = "deathrateht",
-          "Deaths per 100,000 with CI" = "deathratehtci",
-          "Deaths per 1,000,000" = "deathratem",
-          "Deaths per 1,000,000 with CI" = "deathratemci"
+          "Deaths per 100,000 people" = "deathrateht",
+          "Deaths per 100,000 people (95% CI)" = "deathratehtci",
+          "Deaths per 1,000,000 people" = "deathratem",
+          "Deaths per 1,000,000 people (95% CI)" = "deathratemci"
         )
       ),
 
-      selectInput(
+      radioButtons(
         "codC", "Intent:",
         c(
           "All" = "All",
           "Accidental" = "Accidental"
-        )
+        ),
+        selected="All"
       ),
 
       conditionalPanel(
         condition = "input.codC == 'Accidental'",
-        selectInput(
+        radioButtons(
           "natureC", "Nature of death:",
-          c("Any mention", "Underlying")
+          c("Any mention", "Underlying"),
+          selected="Any mention"
         )
       ),
 
+      conditionalPanel(
+        condition = "input.codC == 'All'",
+        radioButtons(
+          "natureC", "Nature of death:",
+          c("Any mention"),
+          selected = "Any mention"
+        )
+      ),
+      
       selectInput("ageC", "Age group:",
         choices = c(
           "All ages" = "All ages",
@@ -632,7 +653,7 @@ ui <- function(req){
   # All drugs tab ---------------------------------------------------------------
   tabPanel(value="PlotD", 
     "All drugs",
-    h1("Drug induced deaths over time"),
+    h1("Drug induced deaths"),
 
     tabsetPanel(
       type = "tabs",
@@ -652,10 +673,10 @@ ui <- function(req){
         "plotD", "Plot:",
         c(
           "Number of deaths" = "deaths",
-          "Deaths per 100,000" = "deathrateht",
-          "Deaths per 100,000 with CI" = "deathratehtci",
-          "Deaths per 1,000,000" = "deathratem",
-          "Deaths per 1,000,000 with CI" = "deathratemci"
+          "Deaths per 100,000 people" = "deathrateht",
+          "Deaths per 100,000 people (95% CI)" = "deathratehtci",
+          "Deaths per 1,000,000 people" = "deathratem",
+          "Deaths per 1,000,000 people (95% CI)" = "deathratemci"
         )
       ),
 
@@ -674,9 +695,9 @@ ui <- function(req){
           "All opioids",
           "Heroin",
           "Methadone",
-          "Other opioids",
-          "Other and unspecified narcotics",
-          "Other synthetic narcotics"
+          "Natural and semi-synthetic opioids",
+          "Synthetic opioids",
+          "Other and unspecified opioids"
         ),
         selected = c("Amphetamines", "Cocaine", "All opioids")
       )
@@ -686,14 +707,6 @@ ui <- function(req){
   tabPanel("Notes", includeMarkdown("notesAllDrugs.md"))
 )
 ),
-
-# Opioids and other drugs by age -------------------------------------------------------------
-# tabPanel(
-#   "Opioids and other drugs by age"
-# 
-# ),
-
-
 
 
 # Notes tab ---------------------------------------------------------------

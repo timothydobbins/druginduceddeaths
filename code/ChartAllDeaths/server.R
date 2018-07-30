@@ -13,7 +13,15 @@ df <- read_csv("~/Documents/OneDrive/Professional/Projects/Drug Trends/Deaths/de
     age_group = ifelse(age_group == "Allages", "All ages", age_group),
     age_group = factor(age_group, levels = c("15-24", "25-34", "35-44", "45-54", "55-64", "65-74", "75-84", "15-54", "15-64", "All ages")),
     jurisdiction = factor(jurisdiction, levels = c("AUS", "NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT")),
-    intent = factor(intent, levels = c("All", "Accidental", "Intentional", "Undetermined"))
+    intent = factor(intent, levels = c("All", "Accidental", "Intentional", "Undetermined")),
+
+    # Rename clunky opioid types
+    drug = case_when(
+      drug == "Other opioids" ~ "Natural and semi-synthetic opioids",
+      drug == "Other and unspecified narcotics" ~ "Other and unspecified opioids",
+      drug == "Other synthetic narcotics" ~ "Synthetic opioids",
+      TRUE ~ drug
+    )
   )
 
 agecols <- c(
@@ -45,10 +53,10 @@ statecols <- c(
 drugcols <- c("All opioids" = "#332288",
               "Heroin" = "#88CCEE",
               "Methadone" = "#44AA99",
-              "Other synthetic narcotics" = "#117733",
+              "Synthetic opioids" = "#117733",
               "Opium" = "#999933",
-              "Other opioids" = "#882255",
-              "Other and unspecified narcotics" = "#CC6677",
+              "Natural and semi-synthetic opioids" = "#882255",
+              "Other and unspecified opioids" = "#CC6677",
               "Cocaine" = "#DDCC77",
               "Amphetamines" = "#AA4499")
 
