@@ -863,7 +863,7 @@ server <- function(input, output, session) {
 
 # All drugs plot ----------------------------------------------------------
   output$drugPlot <- renderPlotly({
-    sub <- subset(df, subset = (nature=="Underlying" & intent=="Accidental" & age_group == input$ageD & sex == "All" & jurisdiction == "AUS" &
+    sub <- subset(df, subset = (intent=="All" & age_group == input$ageD & sex == "All" & jurisdiction == "AUS" &
         (year >= input$yearsD[[1]] & year <= input$yearsD[[2]]))) %>%
       filter(drug %in% input$drugD)
 

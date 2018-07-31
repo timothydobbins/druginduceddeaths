@@ -1,7 +1,5 @@
 <small>
-Deaths for opioids are *underlying*, deaths for amphetamines and cocaine are *any mention*.
-
-Results are suppressed for *opium* due to small numbers.
+Results supressed for *opium* due to small numbers.
 
 *Natural and semi-synthetic opioids* include morphine, oxycodone and codeine (ICD-10 Code T40.2).
 

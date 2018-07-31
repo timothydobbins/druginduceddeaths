@@ -26,7 +26,7 @@ ui <- function(req){
         tabPanel("Plot",
           mainPanel(
             withLoader(plotlyOutput("opioidPlotA"), type = "html", loader = "loader4"),
-            fluidRow(includeMarkdown("notesOpioids.md"))
+            fluidRow(includeMarkdown("notesOpioidsPlot.md"))
           ),
 
           sidebarPanel(
@@ -81,7 +81,7 @@ ui <- function(req){
             )
           )
         ),
-        tabPanel("Notes", includeMarkdown("notesOpioidsByIntentTypeAge.md"))
+        tabPanel("Notes", includeMarkdown("notesOpioids.md"))
       )
     ),
     tabPanel(value="PlotOB", 
@@ -98,7 +98,7 @@ ui <- function(req){
 
           mainPanel(
             withLoader(plotlyOutput("opioidPlotB"), type = "html", loader = "loader4"),
-            fluidRow(includeMarkdown("notesOpioids.md"))
+            fluidRow(includeMarkdown("notesOpioidsPlot.md"))
           ),
 
 
@@ -147,7 +147,7 @@ ui <- function(req){
             )
           )
         ),
-        tabPanel("Notes", includeMarkdown("notesOpioidsByIntentTypeSex.md"))
+        tabPanel("Notes", includeMarkdown("notesOpioids.md"))
       )
     ),
 
@@ -164,7 +164,7 @@ ui <- function(req){
 
           mainPanel(
             withLoader(plotlyOutput("opioidPlotC"), type = "html", loader = "loader4"),
-            fluidRow(includeMarkdown("notesOpioids.md"))
+            fluidRow(includeMarkdown("notesOpioidsPlot.md"))
           ),
 
           sidebarPanel(
@@ -214,7 +214,7 @@ ui <- function(req){
             )
           )
         ),
-        tabPanel("Notes", includeMarkdown("notesOpioidsBySexIntentType.md"))
+        tabPanel("Notes", includeMarkdown("notesOpioids.md"))
       )
     ),
 
@@ -233,7 +233,7 @@ ui <- function(req){
           "Plot",
           mainPanel(
             withLoader(plotlyOutput("opioidPlotD"), type = "html", loader = "loader4"),
-            fluidRow(includeMarkdown("notesOpioids.md"))
+            fluidRow(includeMarkdown("notesOpioidsPlot.md"))
           ),
 
           sidebarPanel(
@@ -285,7 +285,7 @@ ui <- function(req){
             )
           )
         ),
-        tabPanel("Notes", includeMarkdown("notesOpioidsByIntentJurisdictionSex.md"))
+        tabPanel("Notes", includeMarkdown("notesOpioids.md"))
       )
     ),
     tabPanel(value="PlotOE", 
@@ -362,7 +362,7 @@ ui <- function(req){
                    )
                  )
                ),
-               tabPanel("Notes", "Notes go here")
+               tabPanel("Notes", includeMarkdown("notesOpioidsOtherDrugs.md"))
              )
   ),
 
@@ -433,7 +433,7 @@ ui <- function(req){
                    )
                  )
                ),
-               tabPanel("Notes", "Notes go here")
+               tabPanel("Notes", includeMarkdown("notesOpioidsOtherDrugs.md"))
              )
            )
   ),
@@ -463,7 +463,8 @@ ui <- function(req){
                             "Deaths per 100,000 people" = "deathrateht",
                             "Deaths per 100,000 people (95% CI)" = "deathratehtci",
                             "Deaths per 1,000,000 people" = "deathratem",
-                            "Deaths per 1,000,000 people (95% CI)" = "deathratemci"
+                            "Deaths per 1,000,000 people (95% CI)" = "deathratemci",
+                            "Percent of all opioid deaths" = "percent"
                           ),
                           selected="deathrateht"
                         ),
@@ -503,7 +504,7 @@ ui <- function(req){
                       )
                       
                       ),
-             tabPanel("Notes")
+             tabPanel("Notes", includeMarkdown("notesOpioidsExclusive.md"))
            )
   )),
 
