@@ -115,7 +115,8 @@ ui <- function(req){
                 "Deaths per 100,000 people (95% CI)" = "deathratehtci",
                 "Deaths per 1,000,000 people" = "deathratem",
                 "Deaths per 1,000,000 people (95% CI)" = "deathratemci"
-              )
+              ),
+              selected="deathrateht"
             ),
 
             selectInput(
@@ -179,7 +180,8 @@ ui <- function(req){
                 "Deaths per 100,000 people (95% CI)" = "deathratehtci",
                 "Deaths per 1,000,000 people" = "deathratem",
                 "Deaths per 1,000,000 people (95% CI)" = "deathratemci"
-              )
+              ),
+              selected="deathrateht"
             ),
 
             selectInput(
@@ -247,7 +249,8 @@ ui <- function(req){
                 "Deaths per 100,000 people (95% CI)" = "deathratehtci",
                 "Deaths per 1,000,000 people" = "deathratem",
                 "Deaths per 1,000,000 people (95% CI)" = "deathratemci"
-              )
+              ),
+              selected="deathrateht"
             ),
 
             selectInput(
@@ -311,7 +314,8 @@ ui <- function(req){
                        "Deaths per 100,000 people (95% CI)" = "deathratehtci",
                        "Deaths per 1,000,000 people" = "deathratem",
                        "Deaths per 1,000,000 people (95% CI)" = "deathratemci"
-                     )
+                     ),
+                     selected="deathrateht"
                    ),
                    
                    selectInput(
@@ -391,7 +395,8 @@ ui <- function(req){
                        "Deaths per 100,000 people (95% CI)" = "deathratehtci",
                        "Deaths per 1,000,000 people" = "deathratem",
                        "Deaths per 1,000,000 people (95% CI)" = "deathratemci"
-                     )
+                     ),
+                     selected="deathrateht"
                    ),
                    
                    selectInput(
@@ -459,7 +464,8 @@ ui <- function(req){
                             "Deaths per 100,000 people (95% CI)" = "deathratehtci",
                             "Deaths per 1,000,000 people" = "deathratem",
                             "Deaths per 1,000,000 people (95% CI)" = "deathratemci"
-                          )
+                          ),
+                          selected="deathrateht"
                         ),
                         
                         selectInput(
@@ -529,7 +535,8 @@ ui <- function(req){
           "Deaths per 100,000 people (95% CI)" = "deathratehtci",
           "Deaths per 1,000,000 people" = "deathratem",
           "Deaths per 1,000,000 people (95% CI)" = "deathratemci"
-        )
+        ),
+        selected="deathrateht"
       ),
 
       radioButtons(
@@ -605,7 +612,8 @@ ui <- function(req){
           "Deaths per 100,000 people (95% CI)" = "deathratehtci",
           "Deaths per 1,000,000 people" = "deathratem",
           "Deaths per 1,000,000 people (95% CI)" = "deathratemci"
-        )
+        ),
+        selected="deathrateht"
       ),
 
       radioButtons(
@@ -677,7 +685,8 @@ ui <- function(req){
           "Deaths per 100,000 people (95% CI)" = "deathratehtci",
           "Deaths per 1,000,000 people" = "deathratem",
           "Deaths per 1,000,000 people (95% CI)" = "deathratemci"
-        )
+        ),
+        selected="deathrateht"
       ),
 
       selectInput("ageD", "Age group:",

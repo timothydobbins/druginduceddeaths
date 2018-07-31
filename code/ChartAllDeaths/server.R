@@ -287,6 +287,7 @@ server <- function(input, output, session) {
         x = year, y = rate_ht, colour = drug, linetype=sex, group = 1,
         text = paste0(
           "Year: ", year,
+          "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_ht, 2), " (", round(rate_ht_lcl, 2), ", ", round(rate_ht_ucl, 2), ")",
           "<br>Intent: ", str_to_title(intent),
           "<br>Opioid type: ", drug,
@@ -305,6 +306,7 @@ server <- function(input, output, session) {
         x = year, y = rate_ht, colour = drug, linetype=sex, group = 1,
         text = paste0(
           "Year: ", year,
+          "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_ht, 2), " (", round(rate_ht_lcl, 2), ", ", round(rate_ht_ucl, 2), ")",
           "<br>Intent: ", str_to_title(intent),
           "<br>Opioid type: ", drug,
@@ -323,6 +325,7 @@ server <- function(input, output, session) {
         x = year, y = rate_m, colour = drug, linetype=sex, group = 1,
         text = paste0(
           "Year: ", year,
+          "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_m, 2), " (", round(rate_m_lcl, 2), ", ", round(rate_m_ucl, 2), ")",
           "<br>Intent: ", str_to_title(intent),
           "<br>Opioid type: ", drug,
@@ -341,6 +344,7 @@ server <- function(input, output, session) {
         x = year, y = rate_m, colour = drug, linetype=sex, group = 1,
         text = paste0(
           "Year: ", year,
+          "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_m, 2), " (", round(rate_m_lcl, 2), ", ", round(rate_m_ucl, 2), ")",
           "<br>Intent: ", str_to_title(intent),
           "<br>Opioid type: ", drug,
@@ -406,6 +410,7 @@ server <- function(input, output, session) {
         x = year, y = rate_ht, colour = drug, linetype=intent, group = 1,
         text = paste0(
           "Year: ", year,
+          "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_ht, 2), " (", round(rate_ht_lcl, 2), ", ", round(rate_ht_ucl, 2), ")",
           "<br>Sex: ", sex,
           "<br>Intent: ", str_to_title(intent),
@@ -424,6 +429,7 @@ server <- function(input, output, session) {
         x = year, y = rate_ht, colour = drug, linetype=intent, group = 1,
         text = paste0(
           "Year: ", year,
+          "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_ht, 2), " (", round(rate_ht_lcl, 2), ", ", round(rate_ht_ucl, 2), ")",
           "<br>Sex: ", sex,
           "<br>Intent: ", str_to_title(intent),
@@ -442,6 +448,7 @@ server <- function(input, output, session) {
         x = year, y = rate_m, colour = drug, linetype=intent, group = 1,
         text = paste0(
           "Year: ", year,
+          "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_m, 2), " (", round(rate_m_lcl, 2), ", ", round(rate_m_ucl, 2), ")",
           "<br>Sex: ", sex,
           "<br>Intent: ", str_to_title(intent),
@@ -460,6 +467,7 @@ server <- function(input, output, session) {
         x = year, y = rate_m, colour = drug, linetype=intent, group = 1,
         text = paste0(
           "Year: ", year,
+          "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_m, 2), " (", round(rate_m_lcl, 2), ", ", round(rate_m_ucl, 2), ")",
           "<br>Sex: ", sex,
           "<br>Intent: ", str_to_title(intent),
@@ -524,6 +532,7 @@ server <- function(input, output, session) {
         x = year, y = rate_ht, colour = jurisdiction, linetype = sex, group = 1,
         text = paste0(
           "Year: ", year,
+          "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_ht, 2), " (", round(rate_ht_lcl, 2), ", ", round(rate_ht_ucl, 2), ")",
           "<br>Intent: ", str_to_title(intent), 
           "<br>Jurisdiction: ", jurisdiction,
@@ -542,6 +551,7 @@ server <- function(input, output, session) {
         x = year, y = rate_ht, colour = jurisdiction, linetype = sex, group = 1,
         text = paste0(
           "Year: ", year,
+          "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_ht, 2), " (", round(rate_ht_lcl, 2), ", ", round(rate_ht_ucl, 2), ")",
           "<br>Intent: ", str_to_title(intent), 
           "<br>Jurisdiction: ", jurisdiction,
@@ -560,6 +570,7 @@ server <- function(input, output, session) {
         x = year, y = rate_m, colour = jurisdiction, linetype = sex, group = 1,
         text = paste0(
           "Year: ", year,
+          "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_m, 2), " (", round(rate_m_lcl, 2), ", ", round(rate_m_ucl, 2), ")",
           "<br>Intent: ", str_to_title(intent), 
           "<br>Jurisdiction: ", jurisdiction,
@@ -578,6 +589,7 @@ server <- function(input, output, session) {
         x = year, y = rate_m, colour = jurisdiction, linetype = sex, group = 1,
         text = paste0(
           "Year: ", year,
+          "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_m, 2), " (", round(rate_m_lcl, 2), ", ", round(rate_m_ucl, 2), ")",
           "<br>Intent: ", str_to_title(intent), 
           "<br>Jurisdiction: ", jurisdiction,
@@ -644,6 +656,7 @@ server <- function(input, output, session) {
         x = year, y = rate_ht, colour = age_group, group = 1,
         text = paste0(
           "Year: ", year,
+          "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_ht, 2), " (", round(rate_ht_lcl, 2), ", ", round(rate_ht_ucl, 2), ")",
           "<br>Intent: ", str_to_title(intent),
           "<br>Nature: ", str_to_title(nature),
@@ -662,6 +675,7 @@ server <- function(input, output, session) {
         x = year, y = rate_ht, colour = age_group, group = 1,
         text = paste0(
           "Year: ", year,
+          "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_ht, 2), " (", round(rate_ht_lcl, 2), ", ", round(rate_ht_ucl, 2), ")",
           "<br>Intent: ", str_to_title(intent),
           "<br>Nature: ", str_to_title(nature),
@@ -680,6 +694,7 @@ server <- function(input, output, session) {
         x = year, y = rate_m, colour = age_group, group = 1,
         text = paste0(
           "Year: ", year,
+          "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_m, 2), " (", round(rate_m_lcl, 2), ", ", round(rate_m_ucl, 2), ")",
           "<br>Intent: ", str_to_title(intent),
           "<br>Nature: ", str_to_title(nature),
@@ -698,6 +713,7 @@ server <- function(input, output, session) {
         x = year, y = rate_m, colour = age_group, group = 1,
         text = paste0(
           "Year: ", year,
+          "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_m, 2), " (", round(rate_m_lcl, 2), ", ", round(rate_m_ucl, 2), ")",
           "<br>Intent: ", str_to_title(intent),
           "<br>Nature: ", str_to_title(nature),
@@ -757,6 +773,7 @@ server <- function(input, output, session) {
         x = year, y = rate_ht, colour=age_group, group = 1,
         text = paste0(
           "Year: ", year,
+          "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_ht, 2), " (", round(rate_ht_lcl, 2), ", ", round(rate_ht_ucl, 2), ")",
           "<br>Intent: ", str_to_title(intent),
           "<br>Nature: ", str_to_title(nature),
@@ -775,6 +792,7 @@ server <- function(input, output, session) {
         x = year, y = rate_ht, colour=age_group, group = 1,
         text = paste0(
           "Year: ", year,
+          "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_ht, 2), " (", round(rate_ht_lcl, 2), ", ", round(rate_ht_ucl, 2), ")",
           "<br>Intent: ", str_to_title(intent),
           "<br>Nature: ", str_to_title(nature),
@@ -793,6 +811,7 @@ server <- function(input, output, session) {
         x = year, y = rate_m, colour=age_group, group = 1,
         text = paste0(
           "Year: ", year,
+          "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_m, 2), " (", round(rate_m_lcl, 2), ", ", round(rate_m_ucl, 2), ")",
           "<br>Intent: ", str_to_title(intent),
           "<br>Nature: ", str_to_title(nature),
@@ -811,6 +830,7 @@ server <- function(input, output, session) {
         x = year, y = rate_m, colour=age_group, group = 1,
         text = paste0(
           "Year: ", year,
+          "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_m, 2), " (", round(rate_m_lcl, 2), ", ", round(rate_m_ucl, 2), ")",
           "<br>Intent: ", str_to_title(intent),
           "<br>Nature: ", str_to_title(nature),
@@ -869,6 +889,7 @@ server <- function(input, output, session) {
         x = year, y = rate_ht, colour = drug, group = 1,
         text = paste0(
           "Year: ", year,
+          "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_ht, 2), " (", round(rate_ht_lcl, 2), ", ", round(rate_ht_ucl, 2), ")",
           "<br>Nature: ", str_to_title(nature),
           "<br>Age group: ", age_group,
@@ -887,6 +908,7 @@ server <- function(input, output, session) {
         x = year, y = rate_ht, colour = drug, group = 1,
         text = paste0(
           "Year: ", year,
+          "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_ht, 2), " (", round(rate_ht_lcl, 2), ", ", round(rate_ht_ucl, 2), ")",
           "<br>Nature: ", str_to_title(nature),
           "<br>Age group: ", age_group,
@@ -905,6 +927,7 @@ server <- function(input, output, session) {
         x = year, y = rate_m, colour = drug, group = 1,
         text = paste0(
           "Year: ", year,
+          "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_m, 2), " (", round(rate_m_lcl, 2), ", ", round(rate_m_ucl, 2), ")",
           "<br>Nature: ", str_to_title(nature),
           "<br>Age group: ", age_group,
@@ -923,6 +946,7 @@ server <- function(input, output, session) {
         x = year, y = rate_m, colour = drug, group = 1,
         text = paste0(
           "Year: ", year,
+          "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_m, 2), " (", round(rate_m_lcl, 2), ", ", round(rate_m_ucl, 2), ")",
           "<br>Nature: ", str_to_title(nature),
           "<br>Age group: ", age_group,
