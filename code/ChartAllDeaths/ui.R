@@ -463,8 +463,7 @@ ui <- function(req){
                             "Deaths per 100,000 people" = "deathrateht",
                             "Deaths per 100,000 people (95% CI)" = "deathratehtci",
                             "Deaths per 1,000,000 people" = "deathratem",
-                            "Deaths per 1,000,000 people (95% CI)" = "deathratemci",
-                            "Percent of all opioid deaths" = "percent"
+                            "Deaths per 1,000,000 people (95% CI)" = "deathratemci"
                           ),
                           selected="deathrateht"
                         ),
@@ -506,7 +505,57 @@ ui <- function(req){
                       ),
              tabPanel("Notes", includeMarkdown("notesOpioidsExclusive.md"))
            )
-  )),
+  ),
+  
+  tabPanel(value="PlotOH", 
+           # Exclusive opioids percents -----------------------------------------
+           "Exclusive opioids as percentages",
+           h1("Opioid induced deaths"),
+           h3("Exclusive opioids as percentages of all opioid induced deaths"),
+           
+           tabsetPanel(
+             type = "tabs",
+             tabPanel("Plot",
+                      mainPanel(
+                        withLoader(plotlyOutput("PlotOH"), type = "html", loader = "loader4")
+                      ),
+                      
+                      sidebarPanel(
+                        sliderInput("yearsOH", "Period",
+                                    min = 2007,
+                                    max = 2016, value = c(2007, 2016), sep = ""
+                        ),
+
+                        radioButtons(
+                          "intentOH", "Intent:",
+                          c("All", "Accidental"),
+                          selected = "All"
+                        ),
+                        
+                        radioButtons(
+                          "ageOH", "Age:",
+                          c("15-64",
+                            "All ages" = "All ages"
+                          ),
+                          selected = "All ages"
+                        ),
+                        
+                        radioButtons("sexOH", "Sex:",
+                                           choices = c(
+                                             "Male",
+                                             "Female",
+                                             "All"
+                                           ),
+                                           selected = c("All")
+                        )
+                    )
+                      
+             ),
+             tabPanel("Notes", includeMarkdown("notesOpioidsExclusive.md"))
+           )
+  )
+  
+  ),
 
   
     # Amphetamines tab --------------------------------------------------------

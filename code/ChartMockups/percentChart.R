@@ -18,11 +18,14 @@ sub <- filter(df, drug %in% c( "Exclusive illicit opioids",
 
 sub
 
-ggplot(filter(sub, (intent=="All" & sex=="Male" & age_group=="Allages")), aes(x=year, y=percent, fill=drug)) + geom_area()
+ggplot(filter(sub, (intent=="All" & sex=="Male" & age_group=="Allages")), aes(x=year, y=percent, fill=drug)) + 
+  geom_area() + 
+  scale_fill_brewer(palette = "PuBu")
 ggplot(filter(sub, (intent=="All" & sex=="Female" & age_group=="Allages")), aes(x=year, y=percent, fill=drug)) + geom_area()
 ggplot(filter(sub, (intent=="All" & sex=="All" & age_group=="Allages")), aes(x=year, y=percent, fill=drug)) + geom_area()
 
 ggplot(filter(sub, (intent=="Accidental" & sex=="Male" & age_group=="Allages")), aes(x=year, y=percent, fill=drug)) + geom_area()
 ggplot(filter(sub, (intent=="Accidental" & sex=="Female" & age_group=="Allages")), aes(x=year, y=percent, fill=drug)) + geom_area()
 g <- ggplot(filter(sub, (intent=="Accidental" & sex=="All" & age_group=="Allages")), aes(x=year, y=percent, fill=drug)) + geom_area()
-ggplotly(g)
+g
+ggplotly(g, group=1)

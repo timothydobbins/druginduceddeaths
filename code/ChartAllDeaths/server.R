@@ -123,6 +123,9 @@ server <- function(input, output, session) {
     if(query1 == "tab=PlotOG"){
       updateTabsetPanel(session, inputId = "Plot", selected = "PlotOG")
     }
+    if(query1 == "tab=PlotOH"){
+      updateTabsetPanel(session, inputId = "Plot", selected = "PlotOH")
+    }
     if(query1 == "tab=PlotA"){
       updateTabsetPanel(session, inputId = "Plot", selected = "PlotA")
     }
@@ -1304,6 +1307,62 @@ server <- function(input, output, session) {
       ) %>%
       add_annotations(
         text = "Sex and drug", xref = "paper", yref = "paper",
+        x = 1.02, xanchor = "left",
+        y = 0.95, yanchor = "bottom", # Same y as legend below
+        legendtitle = TRUE, showarrow = FALSE
+      ) %>%
+      layout(legend = list(y = 0.95, yanchor = "top"), margin = list(b = 100, l = 100)) %>%
+      config(displaylogo=F, collaborate = FALSE, modeBarButtonsToRemove = list("sendDataToCloud","zoom2d","pan2d","select2d","lasso2d",
+                                                                               "zoomIn2d","zoomOut2d","autoScale2d","hoverClosestCartesian",
+                                                                               "hoverCompareCartesian", "resetScale2d", "toggleSpikelines"))
+    
+  })
+  
+  # Exclusive opioids as percents ------------------------------------------
+  output$PlotOH <- renderPlotly({
+    sub <- filter(df, drug %in% c( "Exclusive illicit opioids",
+                                   "Exclusive pharmaceutical opioids",
+                                   "Heroin/Opium with pharmaceutical opioids",
+                                   "Unspecified opioids") &
+                    intent == input$intentOH & 
+                    age_group == input$ageOH & 
+                    (year >= input$yearsOH[[1]] & year <= input$yearsOH[[2]]) & 
+                    sex == input$sexOH) %>% 
+      group_by(year, intent, nature, sex, jurisdiction, age_group) %>% 
+      mutate(alldeaths = sum(n),
+             percent = round(n/sum(n)*100, 2),
+             drug = factor(drug, levels = c( "Unspecified opioids",
+                                             "Heroin/Opium with pharmaceutical opioids",
+                                             "Exclusive pharmaceutical opioids",
+                                             "Exclusive illicit opioids"
+                                             )))
+
+    p <- ggplot(sub, aes(x=year, y=percent, fill=drug, group=1, text = paste0(
+      "Year: ", year,
+      "<br>Deaths: ", n,
+      "<br>Percent: ", percent, "%",
+      "<br>Drug: ", str_to_title(drug),
+      "<br>Intent: ", str_to_title(intent),
+      "<br>Sex: ", sex
+    ))) +
+      geom_area() +
+      labs(x = "Year", y = "Percent of opioid induced deaths") +
+      theme_light() + 
+      theme(legend.title = element_blank()) + 
+      scale_fill_brewer(palette = "PuBu")
+    
+    validate(need(nrow(sub) > 0, "No data selected"))
+    
+    ggplotly(p,  tooltip = "text") %>%
+      add_annotations(
+        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/program/drug-trends">DrugTrends</a>, NDARC',
+        xref = "paper", yref = "paper",
+        x = 0.01, xanchor = "left",
+        y = 1.05, yanchor = "top",
+        showarrow = F, font = list(size = 10, color = "grey")
+      ) %>%
+      add_annotations(
+        text = "Drug", xref = "paper", yref = "paper",
         x = 1.02, xanchor = "left",
         y = 0.95, yanchor = "bottom", # Same y as legend below
         legendtitle = TRUE, showarrow = FALSE
