@@ -15,7 +15,7 @@ df <- read_csv("~/Documents/OneDrive/Professional/Projects/Drug Trends/Deaths/de
     jurisdiction = factor(jurisdiction, levels = c("AUS", "NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT")),
     intent = factor(intent, levels = c("All", "Accidental", "Intentional", "Undetermined")),
 
-    # Rename clunky opioid types
+    # Rename clunky opioids
     drug = case_when(
       drug == "Other opioids" ~ "Natural and semi-synthetic opioids",
       drug == "Other and unspecified narcotics" ~ "Other and unspecified opioids",
@@ -157,7 +157,7 @@ server <- function(input, output, session) {
         text = paste0(
           "Year: ", year,
           "<br>Deaths: ", n,
-          "<br>Opioid type: ", str_to_title(drug),
+          "<br>Opioid: ", str_to_title(drug),
           "<br>Intent: ", str_to_title(intent),
           "<br>Age group: ", age_group
         )
@@ -175,7 +175,7 @@ server <- function(input, output, session) {
           "Year: ", year,
           "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_ht, 2), " (", round(rate_ht_lcl, 2), ", ", round(rate_ht_ucl, 2), ")",
-          "<br>Opioid type: ", str_to_title(drug),
+          "<br>Opioid: ", str_to_title(drug),
           "<br>Intent: ", str_to_title(intent),
           "<br>Age group: ", age_group
         )
@@ -193,7 +193,7 @@ server <- function(input, output, session) {
           "Year: ", year,
           "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_ht, 2), " (", round(rate_ht_lcl, 2), ", ", round(rate_ht_ucl, 2), ")",
-          "<br>Opioid type: ", str_to_title(drug),
+          "<br>Opioid: ", str_to_title(drug),
           "<br>Intent: ", str_to_title(intent),
           "<br>Age group: ", age_group
         )
@@ -211,7 +211,7 @@ server <- function(input, output, session) {
         text = paste0(
           "Year: ", year,
           "<br>Rate: ", round(rate_m, 2), " (", round(rate_m_lcl, 2), ", ", round(rate_m_ucl, 2), ")",
-          "<br>Opioid type: ", str_to_title(drug),
+          "<br>Opioid: ", str_to_title(drug),
           "<br>Intent: ", str_to_title(intent),
           "<br>Age group: ", age_group
         )
@@ -228,7 +228,7 @@ server <- function(input, output, session) {
         text = paste0(
           "Year: ", year,
           "<br>Rate: ", round(rate_m, 2), " (", round(rate_m_lcl, 2), ", ", round(rate_m_ucl, 2), ")",
-          "<br>Opioid type: ", str_to_title(drug),
+          "<br>Opioid: ", str_to_title(drug),
           "<br>Intent: ", str_to_title(intent),
           "<br>Age group: ", age_group
         )
@@ -275,7 +275,7 @@ server <- function(input, output, session) {
           "Year: ", year,
           "<br>Deaths: ", n,
           "<br>Intent: ", str_to_title(intent),
-          "<br>Opioid type: ", drug,
+          "<br>Opioid: ", drug,
           "<br>Sex: ", sex
         )
       ) +
@@ -294,7 +294,7 @@ server <- function(input, output, session) {
           "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_ht, 2), " (", round(rate_ht_lcl, 2), ", ", round(rate_ht_ucl, 2), ")",
           "<br>Intent: ", str_to_title(intent),
-          "<br>Opioid type: ", drug,
+          "<br>Opioid: ", drug,
           "<br>Sex: ", sex
         )
       ) +
@@ -313,7 +313,7 @@ server <- function(input, output, session) {
           "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_ht, 2), " (", round(rate_ht_lcl, 2), ", ", round(rate_ht_ucl, 2), ")",
           "<br>Intent: ", str_to_title(intent),
-          "<br>Opioid type: ", drug,
+          "<br>Opioid: ", drug,
           "<br>Sex: ", sex
         )
       ) +
@@ -332,7 +332,7 @@ server <- function(input, output, session) {
           "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_m, 2), " (", round(rate_m_lcl, 2), ", ", round(rate_m_ucl, 2), ")",
           "<br>Intent: ", str_to_title(intent),
-          "<br>Opioid type: ", drug,
+          "<br>Opioid: ", drug,
           "<br>Sex: ", sex
         )
       ) +
@@ -351,7 +351,7 @@ server <- function(input, output, session) {
           "<br>Deaths: ", n,
           "<br>Rate: ", round(rate_m, 2), " (", round(rate_m_lcl, 2), ", ", round(rate_m_ucl, 2), ")",
           "<br>Intent: ", str_to_title(intent),
-          "<br>Opioid type: ", drug,
+          "<br>Opioid: ", drug,
           "<br>Sex: ", sex
         )
       ) +
@@ -373,7 +373,7 @@ server <- function(input, output, session) {
         showarrow = F, font = list(size = 10, color = "grey")
       ) %>%
       add_annotations(
-        text = "Opioid type by sex", xref = "paper", yref = "paper",
+        text = "Opioid by sex", xref = "paper", yref = "paper",
         x = 1.02, xanchor = "left",
         y = 0.95, yanchor = "bottom", # Same y as legend below
         legendtitle = TRUE, showarrow = FALSE
@@ -399,7 +399,7 @@ server <- function(input, output, session) {
           "<br>Deaths: ", n,
           "<br>Sex: ", sex,
           "<br>Intent: ", str_to_title(intent),
-          "<br>Opioid type: ", drug
+          "<br>Opioid: ", drug
         )
       ) +
         geom_line() +
@@ -418,7 +418,7 @@ server <- function(input, output, session) {
           "<br>Rate: ", round(rate_ht, 2), " (", round(rate_ht_lcl, 2), ", ", round(rate_ht_ucl, 2), ")",
           "<br>Sex: ", sex,
           "<br>Intent: ", str_to_title(intent),
-          "<br>Opioid type: ", drug
+          "<br>Opioid: ", drug
         )
       ) +
         geom_line() +
@@ -437,7 +437,7 @@ server <- function(input, output, session) {
           "<br>Rate: ", round(rate_ht, 2), " (", round(rate_ht_lcl, 2), ", ", round(rate_ht_ucl, 2), ")",
           "<br>Sex: ", sex,
           "<br>Intent: ", str_to_title(intent),
-          "<br>Opioid type: ", drug
+          "<br>Opioid: ", drug
         )
       ) +
         geom_line() +
@@ -456,7 +456,7 @@ server <- function(input, output, session) {
           "<br>Rate: ", round(rate_m, 2), " (", round(rate_m_lcl, 2), ", ", round(rate_m_ucl, 2), ")",
           "<br>Sex: ", sex,
           "<br>Intent: ", str_to_title(intent),
-          "<br>Opioid type: ", drug
+          "<br>Opioid: ", drug
         )
       ) +
         geom_line() +
@@ -475,7 +475,7 @@ server <- function(input, output, session) {
           "<br>Rate: ", round(rate_m, 2), " (", round(rate_m_lcl, 2), ", ", round(rate_m_ucl, 2), ")",
           "<br>Sex: ", sex,
           "<br>Intent: ", str_to_title(intent),
-          "<br>Opioid type: ", drug
+          "<br>Opioid: ", drug
         )
       ) +
         geom_line() +
@@ -496,7 +496,7 @@ server <- function(input, output, session) {
         showarrow = F, font = list(size = 10, color = "grey")
       ) %>%
       add_annotations(
-        text = "Opioid type <br>by intent", xref = "paper", yref = "paper",
+        text = "Opioid <br>by intent", xref = "paper", yref = "paper",
         x = 1.02, xanchor = "left",
         y = 0.95, yanchor = "bottom", # Same y as legend below
         legendtitle = TRUE, showarrow = FALSE
@@ -740,12 +740,17 @@ server <- function(input, output, session) {
         x = 0.01, xanchor = "left",
         y = 0.995, yanchor = "top",
         showarrow = F, font = list(size = 10, color = "grey")
-      ) %>% 
-    layout(margin = list(b = 100, l = 100), showlegend=FALSE) %>% 
+      ) %>%
+      add_annotations(
+        text = "Age", xref = "paper", yref = "paper",
+        x = 1.02, xanchor = "left",
+        y = 0.95, yanchor = "bottom", # Same y as legend below
+        legendtitle = TRUE, showarrow = FALSE
+      ) %>%
+      layout(legend = list(y = 0.95, yanchor = "top"), margin = list(b = 100, l = 100)) %>% 
       config(displaylogo=F, collaborate = FALSE, modeBarButtonsToRemove = list("sendDataToCloud","zoom2d","pan2d","select2d","lasso2d",
                                                                                "zoomIn2d","zoomOut2d","autoScale2d","hoverClosestCartesian",
-                                                                               "hoverCompareCartesian", "resetScale2d", "toggleSpikelines"))
-  })
+                                                                               "hoverCompareCartesian", "resetScale2d", "toggleSpikelines"))  })
 
 
 # Cocaine plot ------------------------------------------------------------
@@ -975,7 +980,7 @@ server <- function(input, output, session) {
         showarrow = F, font = list(size = 10, color = "grey")
       ) %>% 
       add_annotations(
-        text = "Drug type", xref = "paper", yref = "paper",
+        text = "Drug", xref = "paper", yref = "paper",
         x = 1.02, xanchor = "left",
         y = 0.95, yanchor = "bottom", # Same y as legend below
         legendtitle = TRUE, showarrow = FALSE

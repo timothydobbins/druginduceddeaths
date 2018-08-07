@@ -53,6 +53,7 @@ ui <- function(req) {
                   "All opioids",
                   "Heroin",
                   "Methadone",
+                  "Opium",
                   "Natural and semi-synthetic opioids",
                   "Synthetic opioids",
                   "Other and unspecified opioids"
@@ -137,6 +138,7 @@ ui <- function(req) {
                   "All opioids",
                   "Heroin",
                   "Methadone",
+                  "Opium",
                   "Natural and semi-synthetic opioids",
                   "Synthetic opioids",
                   "Other and unspecified opioids"
@@ -210,6 +212,7 @@ ui <- function(req) {
                   "All opioids",
                   "Heroin",
                   "Methadone",
+                  "Opium",
                   "Natural and semi-synthetic opioids",
                   "Synthetic opioids",
                   "Other and unspecified opioids"
@@ -305,7 +308,8 @@ ui <- function(req) {
           tabPanel(
             "Plot",
             mainPanel(
-              withLoader(plotlyOutput("PlotOE", width = "100%", height = "800px"), type = "html", loader = "loader4")
+              withLoader(plotlyOutput("PlotOE", width = "100%", height = "800px"), type = "html", loader = "loader4"),
+              fluidRow(includeMarkdown("notesOpioidsOtherDrugsPlot.md"))
             ),
             sidebarPanel(
               sliderInput("yearsOE", "Period",
@@ -387,7 +391,8 @@ ui <- function(req) {
             tabPanel(
               "Plot",
               mainPanel(
-                withLoader(plotlyOutput("PlotOF", width = "100%", height = "800px"), type = "html", loader = "loader4")
+                withLoader(plotlyOutput("PlotOF", width = "100%", height = "800px"), type = "html", loader = "loader4"),
+                fluidRow(includeMarkdown("notesOpioidsOtherDrugsPlot.md"))
               ),
               sidebarPanel(
                 sliderInput("yearsOF", "Period",
@@ -457,7 +462,8 @@ ui <- function(req) {
           tabPanel(
             "Plot",
             mainPanel(
-              withLoader(plotlyOutput("PlotOG", width = "100%", height = "800px"), type = "html", loader = "loader4")
+              withLoader(plotlyOutput("PlotOG", width = "100%", height = "800px"), type = "html", loader = "loader4"),
+              fluidRow(includeMarkdown("notesOpioidsExclusivePlot.md"))
             ),
 
             sidebarPanel(
@@ -581,7 +587,7 @@ ui <- function(req) {
           "Plot",
           mainPanel(
             withLoader(plotlyOutput("amphetaminePlot", width = "100%", height = "800px"), type = "html", loader = "loader4"),
-            fluidRow(includeMarkdown("notesNoSexSummary.md"))
+            fluidRow(includeMarkdown("notesAmphetaminesPlot.md"))
           ),
 
           sidebarPanel(
@@ -646,7 +652,7 @@ ui <- function(req) {
           "Plot",
           mainPanel(
             withLoader(plotlyOutput("cocainePlot", width = "100%", height = "800px"), type = "html", loader = "loader4"),
-            fluidRow(includeMarkdown("notesNoSexSummaryCocaine.md"))
+            fluidRow(includeMarkdown("notesCocainePlot.md"))
           ),
 
           sidebarPanel(
@@ -741,6 +747,7 @@ ui <- function(req) {
                 "All opioids",
                 "Heroin",
                 "Methadone",
+                "Opium",
                 "Natural and semi-synthetic opioids",
                 "Synthetic opioids",
                 "Other and unspecified opioids"

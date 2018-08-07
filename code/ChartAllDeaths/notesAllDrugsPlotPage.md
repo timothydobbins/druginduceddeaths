@@ -1,7 +1,7 @@
 <small>
-Nature of death is *underlying*. *Underlying* deaths from cocaine are unavailable due to small numbers.
+Small numbers of death have been randomly assigned to protect the confidentiality of individuals. Zero values have not been affected by confidentialisation.
 
-Results are suppressed for *opium* due to small numbers.
+Nature of death is *underlying*. *Underlying* deaths from cocaine are unavailable due to small numbers.
 
 *Natural and semi-synthetic opioids* include morphine, oxycodone and codeine (ICD-10 Code T40.2).
 
