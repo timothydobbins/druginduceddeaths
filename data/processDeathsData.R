@@ -2,6 +2,7 @@
 # Date: 10 July 2018
 # Purpose: Import and transform Excel data for deaths, append esimated resident populations and calculate rates and confidence intervals
 # Rerun 2018-08-06 to incorporate corrected data from ABS
+# Rerun 2018-08-07 to incorporate all intents, underlying for amphetamines
 
 library(readxl)
 library(tidyverse)
@@ -11,28 +12,28 @@ library(epitools)
 
 
 # Import and transform deaths data ----------------------------------------
-sheet1 <- read_excel("Data/Transformed/ABS Feed transformed 20180806.xlsx", sheet=1, skip=1) %>% 
+sheet1 <- read_excel("Data/Transformed/ABS Feed transformed 20180807.xlsx", sheet=1, skip=1) %>% 
   clean_names() %>% 
   filter_all(any_vars(!is.na(.))) %>% 
   fill(drug, intent, nature, cause_of_death, sex, jurisdiction) %>% 
   gather(key=age, value=n, age15_24, age25_34, age35_44, age45_54, age55_64, age65_74, age75_84, age15_54, age15_64, age_all) %>% 
   mutate(age = gsub("_","",age))
 
-sheet2 <- read_excel("Data/Transformed/ABS Feed transformed 20180806.xlsx", sheet=2, skip=1) %>% 
+sheet2 <- read_excel("Data/Transformed/ABS Feed transformed 20180807.xlsx", sheet=2, skip=1) %>% 
   clean_names() %>% 
   filter_all(any_vars(!is.na(.))) %>% 
   fill(drug, intent, nature, cause_of_death, sex, jurisdiction) %>% 
   gather(key=age, value=n, age15_54, age15_64, age_all) %>% 
   mutate(age = gsub("_","",age))
 
-sheet3 <- read_excel("Data/Transformed/ABS Feed transformed 20180806.xlsx", sheet=3, skip=1) %>% 
+sheet3 <- read_excel("Data/Transformed/ABS Feed transformed 20180807.xlsx", sheet=3, skip=1) %>% 
   clean_names() %>% 
   filter_all(any_vars(!is.na(.))) %>% # Drop rows with all missing columns
   fill(drug, nature, intent, sex, jurisdiction) %>% 
   gather(key=age, value=n, age15_24, age25_34, age35_44, age45_54, age55_64, age65_74, age75_84, age15_54, age15_64, age_all) %>% 
   mutate(age = gsub("_","",age))
 
-sheet4 <- read_excel("Data/Transformed/ABS Feed transformed 20180806.xlsx", sheet=4, skip=1) %>% 
+sheet4 <- read_excel("Data/Transformed/ABS Feed transformed 20180807.xlsx", sheet=4, skip=1) %>% 
   clean_names() %>% 
   filter_all(any_vars(!is.na(.))) %>% # Drop rows with all missing columns
   fill(drug, nature, intent, jurisdiction) %>% 
@@ -41,7 +42,7 @@ sheet4 <- read_excel("Data/Transformed/ABS Feed transformed 20180806.xlsx", shee
          age = paste0(word(sex_age, 2, sep="\\_"),  word(sex_age, 3, sep="\\_"))) %>% 
   select(-sex_age)
 
-sheet5 <- read_excel("Data/Transformed/ABS Feed transformed 20180806.xlsx", sheet=5, skip=1) %>% 
+sheet5 <- read_excel("Data/Transformed/ABS Feed transformed 20180807.xlsx", sheet=5, skip=1) %>% 
   clean_names() %>% 
   filter_all(any_vars(!is.na(.))) %>% # Drop rows with all missing columns
   fill(drug, intent, nature, sex) %>% 
@@ -50,7 +51,7 @@ sheet5 <- read_excel("Data/Transformed/ABS Feed transformed 20180806.xlsx", shee
          age = paste0(word(state_age, 2, sep="\\_"),  word(state_age, 3, sep="\\_"))) %>% 
   select(-state_age)
 
-sheet6 <- read_excel("Data/Transformed/ABS Feed transformed 20180806.xlsx", sheet=6, skip=1) %>% 
+sheet6 <- read_excel("Data/Transformed/ABS Feed transformed 20180807.xlsx", sheet=6, skip=1) %>% 
   clean_names() %>% 
   filter_all(any_vars(!is.na(.))) %>% 
   fill(drug, intent) %>% 
@@ -60,7 +61,7 @@ sheet6 <- read_excel("Data/Transformed/ABS Feed transformed 20180806.xlsx", shee
          jurisdiction="AUS",
          nature = "Underlying")
 
-sheet7 <- read_excel("Data/Transformed/ABS Feed transformed 20180806.xlsx", sheet=7, skip=1) %>% 
+sheet7 <- read_excel("Data/Transformed/ABS Feed transformed 20180807.xlsx", sheet=7, skip=1) %>% 
   clean_names() %>% 
   filter_all(any_vars(!is.na(.))) %>% # Drop rows with all missing columns
   fill(drug, intent) %>% 
@@ -71,7 +72,7 @@ sheet7 <- read_excel("Data/Transformed/ABS Feed transformed 20180806.xlsx", shee
          nature = "Underlying") %>% 
   select(-sex_age)
 
-sheet8 <- read_excel("Data/Transformed/ABS Feed transformed 20180806.xlsx", sheet=8, skip=1) %>% 
+sheet8 <- read_excel("Data/Transformed/ABS Feed transformed 20180807.xlsx", sheet=8, skip=1) %>% 
   clean_names() %>% 
   filter_all(any_vars(!is.na(.))) %>% # Drop rows with all missing columns
   fill(drug, intent) %>% 

@@ -20,6 +20,7 @@ df <- read_csv("~/Documents/OneDrive/Professional/Projects/Drug Trends/Deaths/de
       drug == "Other opioids" ~ "Natural and semi-synthetic opioids",
       drug == "Other and unspecified narcotics" ~ "Other and unspecified opioids",
       drug == "Other synthetic narcotics" ~ "Synthetic opioids",
+      drug == "Heroin/Opium with pharmaceutical opioids" ~ "Illicit and pharmaceutical opioids",
       TRUE ~ drug
     )
   )
@@ -69,7 +70,7 @@ drugltype <- c(
   
   "Exclusive illicit opioids"=1,
   "Exclusive pharmaceutical opioids"=2,
-  "Heroin/Opium with pharmaceutical opioids"=3,
+  "Illicit and pharmaceutical opioids"=3,
   "Unspecified opioids"=4)
 
 codtype <- c(
@@ -866,7 +867,7 @@ server <- function(input, output, session) {
 
 # All drugs plot ----------------------------------------------------------
   output$drugPlot <- renderPlotly({
-    sub <- subset(df, subset = (intent=="All" & age_group == input$ageD & sex == "All" & jurisdiction == "AUS" &
+    sub <- subset(df, subset = (intent=="All" & nature=="Underlying" & age_group == input$ageD & sex == "All" & jurisdiction == "AUS" &
         (year >= input$yearsD[[1]] & year <= input$yearsD[[2]]))) %>%
       filter(drug %in% input$drugD)
 
@@ -1322,7 +1323,7 @@ server <- function(input, output, session) {
   output$PlotOH <- renderPlotly({
     sub <- filter(df, drug %in% c( "Exclusive illicit opioids",
                                    "Exclusive pharmaceutical opioids",
-                                   "Heroin/Opium with pharmaceutical opioids",
+                                   "Illicit and pharmaceutical opioids",
                                    "Unspecified opioids") &
                     intent == input$intentOH & 
                     age_group == input$ageOH & 
@@ -1332,7 +1333,7 @@ server <- function(input, output, session) {
       mutate(alldeaths = sum(n),
              percent = round(n/sum(n)*100, 2),
              drug = factor(drug, levels = c( "Unspecified opioids",
-                                             "Heroin/Opium with pharmaceutical opioids",
+                                             "Illicit and pharmaceutical opioids",
                                              "Exclusive pharmaceutical opioids",
                                              "Exclusive illicit opioids"
                                              )))
@@ -1358,7 +1359,7 @@ server <- function(input, output, session) {
         text = 'Source: <a href="https://ndarc.med.unsw.edu.au/program/drug-trends">DrugTrends</a>, NDARC',
         xref = "paper", yref = "paper",
         x = 0.01, xanchor = "left",
-        y = 1.05, yanchor = "top",
+        y = 0.995, yanchor = "top",
         showarrow = F, font = list(size = 10, color = "grey")
       ) %>%
       add_annotations(

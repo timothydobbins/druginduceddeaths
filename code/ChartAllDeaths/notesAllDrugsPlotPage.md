@@ -1,5 +1,5 @@
 <small>
-Deaths for opioids are *underlying*, deaths for amphetamines and cocaine are *any mention*.
+Nature of death is *underlying*. *Underlying* deaths from cocaine are unavailable due to small numbers.
 
 Results are suppressed for *opium* due to small numbers.
 
