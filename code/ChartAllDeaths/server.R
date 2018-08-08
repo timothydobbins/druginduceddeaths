@@ -242,6 +242,10 @@ server <- function(input, output, session) {
 
     validate(need(nrow(sub) > 0, "No data selected"))
     
+    # Remove vertical gridlines
+    p <- p + theme(panel.grid.minor.x = element_blank(),
+                   panel.grid.major.x = element_blank())
+    
     ggplotly(p, tooltip = "text") %>%
       add_annotations(
         text = 'Source: <a href="https://ndarc.med.unsw.edu.au/program/drug-trends">DrugTrends</a>, NDARC',
@@ -364,6 +368,10 @@ server <- function(input, output, session) {
 
     validate(need(nrow(sub) > 0, "No data selected"))
     
+    # Remove vertical gridlines
+    p <- p + theme(panel.grid.minor.x = element_blank(),
+                   panel.grid.major.x = element_blank())
+
     ggplotly(p, tooltip = "text") %>%
       add_annotations(
         text = 'Source: <a href="https://ndarc.med.unsw.edu.au/program/drug-trends">DrugTrends</a>, NDARC',
@@ -486,6 +494,10 @@ server <- function(input, output, session) {
     }
     
     validate(need(nrow(sub) > 0, "No data selected"))
+
+    # Remove vertical gridlines
+    p <- p + theme(panel.grid.minor.x = element_blank(),
+                   panel.grid.major.x = element_blank())
     
     ggplotly(p, tooltip = "text") %>%
       add_annotations(
@@ -608,6 +620,10 @@ server <- function(input, output, session) {
     }
     
     validate(need(nrow(sub) > 0, "No data selected"))
+    
+    # Remove vertical gridlines
+    p <- p + theme(panel.grid.minor.x = element_blank(),
+                   panel.grid.major.x = element_blank())
     
     ggplotly(p, tooltip = "text") %>%
       add_annotations(
@@ -732,6 +748,10 @@ server <- function(input, output, session) {
     }
 
     validate(need(nrow(sub) > 0, "No data selected"))
+
+    # Remove vertical gridlines
+    p <- p + theme(panel.grid.minor.x = element_blank(),
+                   panel.grid.major.x = element_blank())
     
     ggplotly(p, tooltip = "text") %>%
       add_annotations(
@@ -855,6 +875,10 @@ server <- function(input, output, session) {
 
     validate(need(nrow(sub) > 0, "No data selected"))
     
+    # Remove vertical gridlines
+    p <- p + theme(panel.grid.minor.x = element_blank(),
+                   panel.grid.major.x = element_blank())
+    
     ggplotly(p, tooltip = "text") %>%
       add_annotations(
         text = 'Source: <a href="https://ndarc.med.unsw.edu.au/program/drug-trends">DrugTrends</a>, NDARC',
@@ -971,6 +995,10 @@ server <- function(input, output, session) {
 
     validate(need(nrow(sub) > 0, "No data selected"))
     
+    # Remove vertical gridlines
+    p <- p + theme(panel.grid.minor.x = element_blank(),
+                   panel.grid.major.x = element_blank())
+
     ggplotly(p, tooltip = "text") %>%
       add_annotations(
         text = 'Source: <a href="https://ndarc.med.unsw.edu.au/program/drug-trends">DrugTrends</a>, NDARC',
@@ -1080,6 +1108,10 @@ server <- function(input, output, session) {
     }
     
     validate(need(nrow(sub) > 0, "No data selected"))
+    
+    # Remove vertical gridlines
+    p <- p + theme(panel.grid.minor.x = element_blank(),
+                   panel.grid.major.x = element_blank())
     
     ggplotly(p, tooltip = "text") %>%
       add_annotations(
@@ -1192,6 +1224,10 @@ server <- function(input, output, session) {
     
     validate(need(nrow(sub) > 0, "No data selected"))
     
+    # Remove vertical gridlines
+    p <- p + theme(panel.grid.minor.x = element_blank(),
+                   panel.grid.major.x = element_blank())
+    
     ggplotly(p, tooltip = "text") %>%
       add_annotations(
         text = 'Source: <a href="https://ndarc.med.unsw.edu.au/program/drug-trends">DrugTrends</a>, NDARC',
@@ -1303,6 +1339,10 @@ server <- function(input, output, session) {
     
     validate(need(nrow(sub) > 0, "No data selected"))
     
+    # Remove vertical gridlines
+    p <- p + theme(panel.grid.minor.x = element_blank(),
+                   panel.grid.major.x = element_blank())
+
     ggplotly(p, tooltip = "text") %>%
       add_annotations(
         text = 'Source: <a href="https://ndarc.med.unsw.edu.au/program/drug-trends">DrugTrends</a>, NDARC',
@@ -1359,6 +1399,10 @@ server <- function(input, output, session) {
     
     validate(need(nrow(sub) > 0, "No data selected"))
     
+    # Remove vertical gridlines
+    p <- p + theme(panel.grid.minor.x = element_blank(),
+                   panel.grid.major.x = element_blank())
+
     ggplotly(p,  tooltip = "text") %>%
       add_annotations(
         text = 'Source: <a href="https://ndarc.med.unsw.edu.au/program/drug-trends">DrugTrends</a>, NDARC',
