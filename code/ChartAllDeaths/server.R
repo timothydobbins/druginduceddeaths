@@ -7,7 +7,7 @@ library(plotly)
 library(shinycustomloader)
 
 # Note use of absolute path for development only
-df <- read_csv("~/Documents/OneDrive/Professional/Projects/Drug Trends/Deaths/deathvisualisations/Data/Transformed/Deaths_Pop_CI.csv") %>%
+df <- read_csv("Deaths_Pop_CI.csv") %>%
   distinct() %>%
   mutate(
     age_group = ifelse(age_group == "Allages", "All ages", age_group),
