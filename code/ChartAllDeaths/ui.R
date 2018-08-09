@@ -8,8 +8,11 @@ library(shinycustomloader)
 
 ui <- function(req){
   navbarPage(
+    header = singleton(tags$head(includeScript('google_analytics.js'))),
+    
     theme = shinytheme("yeti"),
     "Deaths induced by:", id = "Plot",
+
     navbarMenu(
 
       # Opioids tab -------------------------------------------------------------
@@ -64,7 +67,7 @@ ui <- function(req){
               checkboxGroupInput(
                 "codOA", "Intent:",
                 c("All", "Accidental", "Intentional", "Undetermined"),
-                selected = "All"
+                selected = c("All", "Accidental", "Intentional", "Undetermined")
               ),
 
               checkboxGroupInput("ageOA", "Age group:",
@@ -80,7 +83,7 @@ ui <- function(req){
                   "15 to 64" = "15-64",
                   "All ages" = "All ages"
                 ),
-                selected = c("All ages")
+                selected = c("15-64")
               )
             )
           ),
