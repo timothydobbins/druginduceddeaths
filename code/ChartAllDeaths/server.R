@@ -683,7 +683,7 @@ server <- function(input, output, session) {
         )
       ) +
         geom_line() +
-        scale_y_continuous(limits = c(0, NA)) +
+        scale_y_continuous(limits = c(0, 5)) +
         labs(x = "Year", y = "Deaths per 100,000") +
         theme_light() + scale_colour_manual(values = agecols) +
         theme(legend.title = element_blank())
@@ -702,6 +702,7 @@ server <- function(input, output, session) {
         )
       ) +
         geom_line() +
+        scale_y_continuous(limits = c(0, 5)) +
         geom_ribbon(aes(ymin = rate_ht_lcl, ymax = rate_ht_ucl), alpha = 0.1, size = 0) +
         labs(x = "Year", y = "Deaths per 100,000") +
         theme_light() + scale_colour_manual(values = agecols) +
@@ -721,7 +722,7 @@ server <- function(input, output, session) {
         )
       ) +
         geom_line() +
-        scale_y_continuous(limits = c(0, NA)) +
+        scale_y_continuous(limits = c(0, 50)) +
         labs(x = "Year", y = "Deaths per 1,000,000") +
         theme_light() + scale_colour_manual(values = agecols) +
         theme(legend.title = element_blank())
@@ -740,6 +741,7 @@ server <- function(input, output, session) {
         )
       ) +
         geom_line() +
+        scale_y_continuous(limits = c(0, 50)) +
         geom_ribbon(aes(ymin = rate_m_lcl, ymax = rate_m_ucl), alpha = 0.1, size = 0) +
         labs(x = "Year", y = "Deaths per 1,000,000") +
         theme_light() + scale_colour_manual(values = agecols) +
@@ -790,7 +792,7 @@ server <- function(input, output, session) {
         )
       ) +
         geom_line() +
-        scale_y_continuous(limits = c(0, 50)) +
+        scale_y_continuous(limits = c(0, 100)) +
         labs(x = "Year", y = "Number of deaths") +
         theme_light() + scale_colour_manual(values = agecols) +
         theme(legend.title = element_blank())
@@ -809,7 +811,7 @@ server <- function(input, output, session) {
         )
       ) +
         geom_line() +
-        scale_y_continuous(limits = c(0, NA)) +
+        scale_y_continuous(limits = c(0, 5)) +
         labs(x = "Year", y = "Deaths per 100,000") +
         theme_light() + scale_colour_manual(values = agecols) +
         theme(legend.title = element_blank())
@@ -828,6 +830,7 @@ server <- function(input, output, session) {
         )
       ) +
         geom_line() +
+        scale_y_continuous(limits = c(0, 5)) +
         geom_ribbon(aes(ymin = rate_ht_lcl, ymax = rate_ht_ucl), alpha = 0.1, size = 0) +
         labs(x = "Year", y = "Deaths per 100,000") +
         theme_light() + scale_colour_manual(values = agecols) +
@@ -847,7 +850,7 @@ server <- function(input, output, session) {
         )
       ) +
         geom_line() +
-        scale_y_continuous(limits = c(0, NA)) +
+        scale_y_continuous(limits = c(0, 50)) +
         labs(x = "Year", y = "Deaths per 1,000,000") +
         theme_light() + scale_colour_manual(values = agecols) +
         theme(legend.title = element_blank())
@@ -866,6 +869,7 @@ server <- function(input, output, session) {
         )
       ) +
         geom_line() +
+        scale_y_continuous(limits = c(0, 50)) +
         geom_ribbon(aes(ymin = rate_m_lcl, ymax = rate_m_ucl), alpha = 0.1, size = 0) +
         labs(x = "Year", y = "Deaths per 1,000,000") +
         theme_light() + scale_colour_manual(values = agecols) +

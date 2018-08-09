@@ -27,7 +27,7 @@ ui <- function(req){
           tabPanel(
             "Plot",
             mainPanel(
-              withLoader(plotlyOutput("opioidPlotA", width = "100%", height = "800px"), type = "html", loader = "loader4"),
+              withLoader(plotlyOutput("opioidPlotA", width = "100%", height = "600px"), type = "html", loader = "loader4"),
               fluidRow(includeMarkdown("notesOpioidsPlot.md"))
             ),
 
@@ -101,7 +101,7 @@ ui <- function(req){
 
 
             mainPanel(
-              withLoader(plotlyOutput("opioidPlotB", width = "100%", height = "800px"), type = "html", loader = "loader4"),
+              withLoader(plotlyOutput("opioidPlotB", width = "100%", height = "600px"), type = "html", loader = "loader4"),
               fluidRow(includeMarkdown("notesOpioidsPlot.md"))
             ),
 
@@ -169,7 +169,7 @@ ui <- function(req){
             "Plot",
 
             mainPanel(
-              withLoader(plotlyOutput("opioidPlotC", width = "100%", height = "800px"), type = "html", loader = "loader4"),
+              withLoader(plotlyOutput("opioidPlotC", width = "100%", height = "600px"), type = "html", loader = "loader4"),
               fluidRow(includeMarkdown("notesOpioidsPlot.md"))
             ),
 
@@ -240,7 +240,7 @@ ui <- function(req){
           tabPanel(
             "Plot",
             mainPanel(
-              withLoader(plotlyOutput("opioidPlotD", width = "100%", height = "800px"), type = "html", loader = "loader4"),
+              withLoader(plotlyOutput("opioidPlotD", width = "100%", height = "600px"), type = "html", loader = "loader4"),
               fluidRow(includeMarkdown("notesOpioidsPlot.md"))
             ),
 
@@ -308,7 +308,7 @@ ui <- function(req){
           tabPanel(
             "Plot",
             mainPanel(
-              withLoader(plotlyOutput("PlotOE", width = "100%", height = "800px"), type = "html", loader = "loader4"),
+              withLoader(plotlyOutput("PlotOE", width = "100%", height = "600px"), type = "html", loader = "loader4"),
               fluidRow(includeMarkdown("notesOpioidsOtherDrugsPlot.md"))
             ),
             sidebarPanel(
@@ -391,7 +391,7 @@ ui <- function(req){
             tabPanel(
               "Plot",
               mainPanel(
-                withLoader(plotlyOutput("PlotOF", width = "100%", height = "800px"), type = "html", loader = "loader4"),
+                withLoader(plotlyOutput("PlotOF", width = "100%", height = "600px"), type = "html", loader = "loader4"),
                 fluidRow(includeMarkdown("notesOpioidsOtherDrugsPlot.md"))
               ),
               sidebarPanel(
@@ -462,7 +462,7 @@ ui <- function(req){
           tabPanel(
             "Plot",
             mainPanel(
-              withLoader(plotlyOutput("PlotOG", width = "100%", height = "800px"), type = "html", loader = "loader4"),
+              withLoader(plotlyOutput("PlotOG", width = "100%", height = "600px"), type = "html", loader = "loader4"),
               fluidRow(includeMarkdown("notesOpioidsExclusivePlot.md"))
             ),
 
@@ -536,7 +536,7 @@ ui <- function(req){
           tabPanel(
             "Plot",
             mainPanel(
-              withLoader(plotlyOutput("PlotOH", width = "100%", height = "800px"), type = "html", loader = "loader4")
+              withLoader(plotlyOutput("PlotOH", width = "100%", height = "600px"), type = "html", loader = "loader4")
             ),
 
             sidebarPanel(
@@ -586,7 +586,7 @@ ui <- function(req){
         tabPanel(
           "Plot",
           mainPanel(
-            withLoader(plotlyOutput("amphetaminePlot", width = "100%", height = "800px"), type = "html", loader = "loader4"),
+            withLoader(plotlyOutput("amphetaminePlot", width = "100%", height = "600px"), type = "html", loader = "loader4"),
             fluidRow(includeMarkdown("notesAmphetaminesPlot.md"))
           ),
 
@@ -652,7 +652,7 @@ ui <- function(req){
         tabPanel(
           "Plot",
           mainPanel(
-            withLoader(plotlyOutput("cocainePlot", width = "100%", height = "800px"), type = "html", loader = "loader4"),
+            withLoader(plotlyOutput("cocainePlot", width = "100%", height = "600px"), type = "html", loader = "loader4"),
             fluidRow(includeMarkdown("notesCocainePlot.md"))
           ),
 
@@ -714,7 +714,7 @@ ui <- function(req){
         tabPanel(
           "Plot",
           mainPanel(
-            withLoader(plotlyOutput("drugPlot", width = "100%", height = "800px"), type = "html", loader = "loader4"),
+            withLoader(plotlyOutput("drugPlot", width = "100%", height = "600px"), type = "html", loader = "loader4"),
             fluidRow(includeMarkdown("notesAllDrugsPlotPage.md"))
           ),
 
