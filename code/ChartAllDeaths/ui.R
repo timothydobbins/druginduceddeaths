@@ -6,11 +6,7 @@ library(tidyverse)
 library(plotly)
 library(shinycustomloader)
 
-ui <- tagList(
-  
-  # -- Add Tracking JS File 
-  tags$head(includeScript("google_analytics.js")),
-  
+ui <- function(req){
   navbarPage(
     theme = shinytheme("yeti"),
     "Deaths induced by:", id = "Plot",
@@ -777,4 +773,4 @@ ui <- tagList(
       )
     )
   )
-)
+}
