@@ -6,7 +6,6 @@ library(tidyverse)
 library(plotly)
 library(shinycustomloader)
 
-# Note use of absolute path for development only
 df <- read_csv("Deaths_Pop_CI.csv") %>%
   distinct() %>%
   mutate(
@@ -248,7 +247,7 @@ server <- function(input, output, session) {
     
     ggplotly(p, tooltip = "text") %>%
       add_annotations(
-        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/program/drug-trends">DrugTrends</a>, NDARC',
+        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/resource/opioid-amphetamine-and-cocaine-induced-deaths-australia-august-2018">DrugTrends</a>, NDARC',
         xref = "paper", yref = "paper",
         x = 0.01, xanchor = "left",
         y = 0.995, yanchor = "top",
@@ -374,7 +373,7 @@ server <- function(input, output, session) {
 
     ggplotly(p, tooltip = "text") %>%
       add_annotations(
-        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/program/drug-trends">DrugTrends</a>, NDARC',
+        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/resource/opioid-amphetamine-and-cocaine-induced-deaths-australia-august-2018">DrugTrends</a>, NDARC',
         xref = "paper", yref = "paper",
         x = 0.01, xanchor = "left",
         y = 0.995, yanchor = "top",
@@ -501,7 +500,7 @@ server <- function(input, output, session) {
     
     ggplotly(p, tooltip = "text") %>%
       add_annotations(
-        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/program/drug-trends">DrugTrends</a>, NDARC',
+        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/resource/opioid-amphetamine-and-cocaine-induced-deaths-australia-august-2018">DrugTrends</a>, NDARC',
         xref = "paper", yref = "paper",
         x = 0.01, xanchor = "left",
         y = 0.995, yanchor = "top",
@@ -627,7 +626,7 @@ server <- function(input, output, session) {
     
     ggplotly(p, tooltip = "text") %>%
       add_annotations(
-        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/program/drug-trends">DrugTrends</a>, NDARC',
+        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/resource/opioid-amphetamine-and-cocaine-induced-deaths-australia-august-2018">DrugTrends</a>, NDARC',
         xref = "paper", yref = "paper",
         x = 0.01, xanchor = "left",
         y = 0.995, yanchor = "top",
@@ -755,7 +754,7 @@ server <- function(input, output, session) {
     
     ggplotly(p, tooltip = "text") %>%
       add_annotations(
-        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/program/drug-trends">DrugTrends</a>, NDARC',
+        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/resource/opioid-amphetamine-and-cocaine-induced-deaths-australia-august-2018">DrugTrends</a>, NDARC',
         xref = "paper", yref = "paper",
         x = 0.01, xanchor = "left",
         y = 0.995, yanchor = "top",
@@ -881,7 +880,7 @@ server <- function(input, output, session) {
     
     ggplotly(p, tooltip = "text") %>%
       add_annotations(
-        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/program/drug-trends">DrugTrends</a>, NDARC',
+        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/resource/opioid-amphetamine-and-cocaine-induced-deaths-australia-august-2018">DrugTrends</a>, NDARC',
         xref = "paper", yref = "paper",
         x = 0.01, xanchor = "left",
         y = 0.995, yanchor = "top",
@@ -1001,7 +1000,7 @@ server <- function(input, output, session) {
 
     ggplotly(p, tooltip = "text") %>%
       add_annotations(
-        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/program/drug-trends">DrugTrends</a>, NDARC',
+        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/resource/opioid-amphetamine-and-cocaine-induced-deaths-australia-august-2018">DrugTrends</a>, NDARC',
         xref = "paper", yref = "paper",
         x = 0.01, xanchor = "left",
         y = 0.995, yanchor = "top",
@@ -1115,7 +1114,7 @@ server <- function(input, output, session) {
     
     ggplotly(p, tooltip = "text") %>%
       add_annotations(
-        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/program/drug-trends">DrugTrends</a>, NDARC',
+        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/resource/opioid-amphetamine-and-cocaine-induced-deaths-australia-august-2018">DrugTrends</a>, NDARC',
         xref = "paper", yref = "paper",
         x = 0.01, xanchor = "left",
         y = 0.995, yanchor = "top",
@@ -1230,7 +1229,7 @@ server <- function(input, output, session) {
     
     ggplotly(p, tooltip = "text") %>%
       add_annotations(
-        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/program/drug-trends">DrugTrends</a>, NDARC',
+        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/resource/opioid-amphetamine-and-cocaine-induced-deaths-australia-august-2018">DrugTrends</a>, NDARC',
         xref = "paper", yref = "paper",
         x = 0.01, xanchor = "left",
         y = 0.995, yanchor = "top",
@@ -1345,7 +1344,7 @@ server <- function(input, output, session) {
 
     ggplotly(p, tooltip = "text") %>%
       add_annotations(
-        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/program/drug-trends">DrugTrends</a>, NDARC',
+        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/resource/opioid-amphetamine-and-cocaine-induced-deaths-australia-august-2018">DrugTrends</a>, NDARC',
         xref = "paper", yref = "paper",
         x = 0.01, xanchor = "left",
         y = 0.995, yanchor = "top",
@@ -1405,7 +1404,7 @@ server <- function(input, output, session) {
 
     ggplotly(p,  tooltip = "text") %>%
       add_annotations(
-        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/program/drug-trends">DrugTrends</a>, NDARC',
+        text = 'Source: <a href="https://ndarc.med.unsw.edu.au/resource/opioid-amphetamine-and-cocaine-induced-deaths-australia-august-2018">DrugTrends</a>, NDARC',
         xref = "paper", yref = "paper",
         x = 0.01, xanchor = "left",
         y = 0.995, yanchor = "top",

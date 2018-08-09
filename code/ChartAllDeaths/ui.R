@@ -619,7 +619,8 @@ ui <- tagList(
 
             radioButtons(
               "natureA", "Nature of death:",
-              c("Underlying", "Any mention"),
+              c("Amphetamine induced" = "Underlying",
+                "Drug induced with amphetamines contributing" = "Any mention"),
               selected = "Underlying"
             ),
 
@@ -687,8 +688,9 @@ ui <- tagList(
 
             radioButtons(
                 "natureC", "Nature of death:",
-                c("Any mention"),
-                selected = "Any mention"
+                c("Cocaine induced" = "Underlying",
+                  "Drug induced with cocaine contributing" = "Any mention"),
+                selected = "Underlying"
               ),
 
             selectInput("ageC", "Age group:",
@@ -748,6 +750,7 @@ ui <- tagList(
             checkboxGroupInput("drugD", "Drug:",
               choices = c(
                 "Amphetamines",
+                "Cocaine",
                 "All opioids",
                 "Heroin",
                 "Methadone",
