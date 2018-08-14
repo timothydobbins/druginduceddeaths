@@ -6,10 +6,10 @@ library(tidyverse)
 library(plotly)
 library(shinycustomloader)
 
-ui <- function(req){
+ui <- function(req) {
   navbarPage(
-    header = singleton(tags$head(includeScript('google_analytics.js'))),
-    
+    header = singleton(tags$head(includeScript("google_analytics.js"))),
+
     theme = shinytheme("yeti"),
     "Deaths induced by:", id = "Plot",
 
@@ -618,8 +618,10 @@ ui <- function(req){
 
             radioButtons(
               "natureA", "Nature of death:",
-              c("Amphetamine induced" = "Underlying",
-                "Drug induced with amphetamines contributing" = "Any mention"),
+              c(
+                "Amphetamine induced" = "Underlying",
+                "Drug induced with amphetamines contributing" = "Any mention"
+              ),
               selected = "Underlying"
             ),
 
@@ -686,11 +688,13 @@ ui <- function(req){
             ),
 
             radioButtons(
-                "natureC", "Nature of death:",
-                c("Cocaine induced" = "Underlying",
-                  "Drug induced with cocaine contributing" = "Any mention"),
-                selected = "Underlying"
+              "natureC", "Nature of death:",
+              c(
+                "Cocaine induced" = "Underlying",
+                "Drug induced with cocaine contributing" = "Any mention"
               ),
+              selected = "Underlying"
+            ),
 
             selectInput("ageC", "Age group:",
               choices = c(
@@ -761,17 +765,24 @@ ui <- function(req){
               selected = c("Amphetamines", "Cocaine", "All opioids")
             )
           )
-        ),
-        tabPanel("Notes", includeMarkdown("notesAllDrugs.md"))
+        )
+        #   ,
+        #   tabPanel("Notes", includeMarkdown("notesAllDrugs.md"))
       )
     ),
 
 
     # Notes tab ---------------------------------------------------------------
     tabPanel(
-      "Summary Notes",
+      "Explanatory notes", includeMarkdown("notesOverall.md")
+    ),
+
+
+    # Citation tab ------------------------------------------------------------
+    tabPanel(
+      "Citation",
       fluidRow(
-        column(width = 8, includeMarkdown("notesOverall.md")),
+        column(width = 8, includeMarkdown("notesCitation.md")),
         column(width = 4, includeHTML("DNetLogo.html"))
       )
     )

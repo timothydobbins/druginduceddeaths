@@ -1,6 +1,3 @@
-## Notes
-
-### General
 These data are provided by the [Australian Bureau of Statistics](http://www.abs.gov.au/) (ABS) using data from the National Coronial Information System. Changes in data coding and collection have occurred over the time period reported.
 
 The ABS undertakes a revision process for coroner certified deaths over a 3 year period; accordingly, data for 2015 and 2016 are not final. These figures should be viewed in conjunction with the ABS [Explanatory Notes 50-58](http://www.abs.gov.au/AUSSTATS/abs@.nsf/Lookup/3303.0Explanatory%20Notes12016?OpenDocument).
@@ -26,3 +23,4 @@ As part of the coronial investigation of drug-related deaths, the coroner assign
 1. undetermined, where there was insufficient information for the coroner to make a determination on the intent.  
 
 Opioid-induced deaths are presented by these three categories of intent, where numbers permit, and by all intents.  Amphetamine and cocaine deaths are presented by accidental intent, and all intents, as there are very few of these deaths that are determined to be intentional. 
+
