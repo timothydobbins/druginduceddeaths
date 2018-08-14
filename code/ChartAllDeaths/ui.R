@@ -780,7 +780,7 @@ ui <- function(req) {
 
     # Citation tab ------------------------------------------------------------
     tabPanel(
-      "Citation",
+      "Citation and acknowledgements",
       fluidRow(
         column(width = 8, includeMarkdown("notesCitation.md")),
         column(width = 4, includeHTML("DNetLogo.html"))
